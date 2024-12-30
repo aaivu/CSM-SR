@@ -1,0 +1,25 @@
+# Ignore the SInSR Model
+SISR-Project/Final-Model/SInSR/ 
+# Ignore the lmdb folder
+SISR-Project/Final-Model/SINSR/data/lmdb/
+
+# Ignore the results folder
+SISR-Project/Final-Model/SINSR/data/results/
+
+# Ignore trained models
+SISR-Project/Final-Model/SINSR/models/generator/
+
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+
+# Ignore environment files
+.env
+*.env
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore virtual environment folder
+venv/
