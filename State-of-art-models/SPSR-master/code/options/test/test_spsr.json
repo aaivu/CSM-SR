@@ -1,0 +1,33 @@
+{
+  "name": "SPSR"
+  , "model": "spsr"
+  , "scale": 4
+  , "gpu_ids": [0]
+
+  , "datasets": {
+    "test_1": { 
+      "name": "DIV2k"
+      , "mode": "LR"
+      
+      , "dataroot_LR": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/State-of-art-models/SPSR-master/data/LR"
+    }
+  }
+  , "path": {
+    "root": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/State-of-art-models/SPSR-master/release"
+    , "resume_state": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/State-of-art-models/SPSR-master/release/experiments/SPSR/training_state/25000.state"
+    , "pretrain_model_G": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/State-of-art-models/SPSR-master/release/experiments/SPSR/models/25000_G.pth"
+  }
+
+  , "network_G": {
+    "which_model_G": "spsr_net"
+    , "norm_type": null
+    , "mode": "CNA"
+    , "nf": 64
+    , "nb": 23
+    , "in_nc": 3
+    , "out_nc": 3
+
+    , "gc": 32
+    , "group": 1
+  }
+}
