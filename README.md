@@ -20,7 +20,11 @@
 
 ## Summary
 
-two - three paragraphs about your project.
+Microscopic imaging is essential for examining materials at micro and nano scales, yet it often faces challenges with resolution limitations, leading to longer acquisition times and increased costs for high-resolution images. Traditional super-resolution techniques like SRGAN, ESRGAN, and SwinIR enhance low-resolution images but frequently fail to maintain the structural integrity of the image components, which is crucial for accurate quantitative analysis. This project addresses this limitation by integrating structural information into super-resolution techniques, leveraging conditional generative adversarial networks (GANs) and optimizing them with a structure-informed convex loss function.
+
+The project involves multiple phases, starting with the collection and preprocessing of an extensive set of scanning electron microscopy (SEM) images. It then evaluates existing state-of-the-art super-resolution models to establish baseline performance metrics. The core of the research is the development of the SINSR model, which features an advanced generator and discriminator architecture, coupled with a multi-component loss function designed to preserve structural integrity. The model is trained and evaluated on the collected dataset, and further architectural advancements, such as a parallel Gradient Branch, are explored to enhance performance. The final SINSR model is rigorously evaluated to ensure it significantly improves the quality of super-resolution images, facilitating more accurate scientific analyses.
+
+Through this innovative approach, the project aims to revolutionize microscopic imaging by producing high-resolution images that retain structural integrity, thus enabling more reliable and realistic downstream scientific analyses. The integration of conditional GANs and a structure-informed loss function represents a significant advancement in super-resolution techniques, paving the way for enhanced accuracy in various scientific and research applications.
 
 ## Description
 
