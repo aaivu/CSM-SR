@@ -29,11 +29,12 @@ def main():
         resume_state = torch.load(opt['path']['resume_state'])
     else:  # training from scratch
         resume_state = None
+        # Create the experiment directory and rename it if an old folder exists
         util.mkdir_and_rename(opt['path']['experiments_root'])  # rename old folder if exists
         util.mkdirs((path for key, path in opt['path'].items() if not key == 'experiments_root'
                      and 'pretrain_model' not in key and 'resume' not in key))
 
-    # config loggers. Before it, the log will not work
+    # Set up loggers for training and validation
     util.setup_logger(None, opt['path']['log'], 'train', level=logging.INFO, screen=True)
     util.setup_logger('val', opt['path']['log'], 'val', level=logging.INFO)
     logger = logging.getLogger('base')
