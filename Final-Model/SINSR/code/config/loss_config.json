@@ -1,6 +1,5 @@
-#updated weights
+##updated weights
 {
-  
   "initial_weights": {
     "lambda_adv": 0.5,
     "lambda_perceptual": 2.0,
