@@ -8,7 +8,7 @@
     "batch_size": 1,
  
     "generator_model_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/models/pretrained_generator",
-    "save_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/data/results/generated_images",
+    "save_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/data/results/generated_images3",
     "model_save_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/models/generator",
     "vgg_input_shape": [1024, 768, 3],
     "learning_rates": {
