@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow.keras import layers, Model # type: ignore
 from layer import ResizeLayer
 
-# Generator Model
+# Generator Model 1
 def generator(input_shape=(192, 256, 3)):
     """
     Builds the super-resolution generator model with multi-scale processing.
