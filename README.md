@@ -1,35 +1,16 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <h1>Structure-informed super resolution technique for scientific imaging</h1>
-</head>
-<body>
-![project] ![research]
-
-- <b>Project Lead(s) / Mentor(s)</b>
-    1. Dr. Uthayasanker Thayasivam (talk forum profile link)
-    2. Brinthan, Vithurabhiman (talk forum profile link)
-- <b>Contributor(s)</b>
-    1. Randika Prabashwara (talk forum profile link)
-    2. Gayani Wickramarathna (talk forum profile link)
-    3. Oshadi Perera (talk forum profile link)
-
-<b>Useful Links </b>
-
-- GitHub : <project_url>
-- Talk Forum : <talk_forum_link>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Structure-Informed Super Resolution Technique for Scientific Imaging</title>
-</head>
-<body>
     <h1>Structure-Informed Super Resolution Technique for Scientific Imaging</h1>
-    <p><img src="https://img.shields.io/badge/-Project-blue" alt="Project"> <img src="https://img.shields.io/badge/-Research-yellowgreen" alt="Research"></p>
-<h2>Project Lead(s) / Mentor(s)</h2>
+</head>
+<body>
+    <p><img src="https://img.shields.io/badge/-Project-blue" alt="Project"> <img src="https://img.shields.io/badge/-Research-yellowgreen" alt="Research">      </p>
+<h2>Project Lead(s)</h2>
     <ul>
         <li><a href="talk_forum_profile_link">Dr. Uthayasanker Thayasivam</a></li>
+    </ul>
+<h2>Mentor(s)</h2>
+    <ul>
         <li><a href="talk_forum_profile_link">Brinthan, Vithurabhiman</a></li>
     </ul>
 
@@ -41,10 +22,12 @@
     </ul>
 
 <h2>Useful Links</h2>
-    <ul>
-        <li><a href="project_url">GitHub</a></li>
-        <li><a href="talk_forum_link">Talk Forum</a></li>
-    </ul>
+<a href="project_url">
+    <img src="https://img.shields.io/badge/-GitHub-blue" alt="GitHub">
+</a>
+<a href="talk_forum_link">
+    <img src="https://img.shields.io/badge/-Talk Forum-yellowgreen" alt="Talk Forum">
+</a>
 
 <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 30px; color: blue;">
     <b>Summary</b>
