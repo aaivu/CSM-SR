@@ -1,9 +1,9 @@
-<p style="font-size:24px;"><b>Structure-Informed Convex Loss function for Super-Resolution Image Generation Microscopic-Scintific Images (24px)</b></p>
+<p style="font-size:30px;"><b>Structure-Informed Convex Loss function for Super-Resolution Image Generation Microscopic-Scintific Images</b></p>
 
 This project aims to develop a deep learning model for super-resolution image generation using a combination of convolutional neural networks (CNNs), residual blocks, attention mechanisms, and upsampling layers. The project leverages both TensorFlow and PyTorch for data management, model architecture, training, and evaluation.
-<pre> 
+
 ## Project Structure
-|-- architectures/
+<pre>|-- architectures/
 |   |-- architecture_1.py
 |   |-- architecture_2.py
 |   |-- architecture_3.py
