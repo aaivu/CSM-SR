@@ -22,7 +22,7 @@
     </ul>
 
 <h2>Useful Links</h2>
-<a href="project_url">
+<a href="https://github.com/aaivu/Structure-informed-super-resolution-/tree/master/Final-Model/SINSR">
     <img src="https://img.shields.io/badge/-GitHub-blue" alt="GitHub">
 </a>
 <a href="talk_forum_link">
@@ -58,39 +58,25 @@
     This research project proposes a novel approach to integrate structural information into super-resolution techniques. By leveraging the capabilities of conditional generative adversarial networks (GANs) and optimizing them with a structure-informed convex loss function, the objective is to enhance the quality of super-resolution images. This enhancement aims to facilitate more accurate and realistic downstream scientific analyses.
 </p>
 
-<h2 style="font-family: Arial, sans-serif; font-size: 20px; color: black;">Project Phases</h2>
+<h2>Project Phases</h2>
 
-<h3 style="font-family: Arial, sans-serif; font-size: 18px; color: black;">Phase 1: Data Collection and Preprocessing</h3>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Objective:</b> Collect and preprocess a comprehensive set of scanning electron microscopy (SEM) images, including the SEM dataset, Hierarchical dataset, Majority dataset, and 100% dataset.
-</p>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Outcome:</b> A clean and well-annotated dataset ready for training and evaluation purposes.
-</p>
+<h3>Phase 1: Data Collection and Preprocessing</h3>
+<p><b>Objective:</b> Collect and preprocess a comprehensive set of scanning electron microscopy (SEM) images, including the SEM dataset, Hierarchical dataset, Majority dataset, and 100% dataset.</p>
+<p><b>Outcome:</b> A clean and well-annotated dataset ready for training and evaluation purposes.</p>
 
-<h3 style="font-family: Arial, sans-serif; font-size: 18px; color: black;">Phase 2: Evaluation of State-of-the-Art Models</h3>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Objective:</b> Conduct experiments using existing super-resolution models (SRGAN, ESRGAN, VDSR, SPSR, dSRVAE) on the collected datasets to establish baseline performance metrics.
-</p>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Outcome:</b> Experimental results providing insights into the strengths and limitations of current models.
-</p>
+<h3>Phase 2: Evaluation of State-of-the-Art Models</h3>
+<p><b>Objective:</b> Conduct experiments using existing super-resolution models (SRGAN, ESRGAN, VDSR, SPSR, dSRVAE) on the collected datasets to establish baseline performance metrics.</p>
+<p><b>Outcome:</b> Experimental results providing insights into the strengths and limitations of current models.</p>
 
-<h3 style="font-family: Arial, sans-serif; font-size: 18px; color: black;">Phase 3.1: Development of the SINSR Model</h3>
+<h3>Phase 3.1: Development of the SINSR Model</h3>
 
-<h4 style="font-family: Arial, sans-serif; font-size: 16px; color: black;">1. Model Architecture Design</h4>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Generator Design:</b> The generator model comprises advanced super-resolution residual blocks and attention blocks, coupled with multi-scale processing to enhance feature extraction capabilities.
-</p>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Discriminator Design:</b> The discriminator employs a combination of residual blocks and PatchGAN-style convolutions to effectively differentiate between real and generated images.
-</p>
+<h4>1. Model Architecture Design</h4>
+<p><b>Generator Design:</b> The generator model comprises advanced super-resolution residual blocks and attention blocks, coupled with multi-scale processing to enhance feature extraction capabilities.</p>
+<p><b>Discriminator Design:</b> The discriminator employs a combination of residual blocks and PatchGAN-style convolutions to effectively differentiate between real and generated images.</p>
 
-<h4 style="font-family: Arial, sans-serif; font-size: 16px; color: black;">2. Integration of Structure Informed Loss Function</h4>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Loss Components:</b>
-</p>
-<ul style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
+<h4>2. Integration of Structure-Informed Loss Function</h4>
+<p><b>Loss Components:</b></p>
+<ul>
     <li><b>Adversarial Loss:</b> Utilizes binary cross-entropy to train the GAN, ensuring realistic image generation.</li>
     <li><b>Perceptual Loss:</b> Employs a pre-trained VGG19 model to compare high-level features between the ground truth and generated images.</li>
     <li><b>Gradient Loss:</b> Computes the difference in Sobel edges between the ground truth and generated images to maintain edge information.</li>
@@ -98,41 +84,27 @@
     <li><b>Total Variation Loss:</b> Encourages spatial smoothness in the generated images.</li>
     <li><b>Structural Similarity Loss:</b> Measures the structural similarity between ground truth and generated images.</li>
 </ul>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Total Loss Calculation:</b> Combines all the above loss components into a single, comprehensive loss function for training.
-</p>
+<p><b>Total Loss Calculation:</b> Combines all the above loss components into a single, comprehensive loss function for training.</p>
 
-<h3 style="font-family: Arial, sans-serif; font-size: 18px; color: black;">Phase 4: Model Training and Evaluation</h3>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Objective:</b> Train the SINSR model using the structure-informed loss function and evaluate its performance on the collected dataset.
-</p>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Outcome:</b> Detailed performance metrics, comparisons with baseline models, and qualitative analyses of the generated HR images.
-</p>
+<h3>Phase 4: Model Training and Evaluation</h3>
+<p><b>Objective:</b> Train the SINSR model using the structure-informed loss function and evaluate its performance on the collected dataset.</p>
+<p><b>Outcome:</b> Detailed performance metrics, comparisons with baseline models, and qualitative analyses of the generated high-resolution images.</p>
 
-<h3 style="font-family: Arial, sans-serif; font-size: 18px; color: black;">Phase 5: Advanced Model Development</h3>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Objective:</b> Integrate additional architectural advancements, such as incorporating a Gradient Branch alongside the SR branch, operating in parallel.
-</p>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Outcome:</b> An enhanced SINSR model architecture that significantly improves performance in maintaining structural integrity in HR images.
-</p>
+<h3>Phase 5: Advanced Model Development</h3>
+<p><b>Objective:</b> Integrate additional architectural advancements, such as incorporating a Gradient Branch alongside the super-resolution branch, operating in parallel.</p>
+<p><b>Outcome:</b> An enhanced SINSR model architecture that significantly improves performance in maintaining structural integrity in high-resolution images.</p>
 
-<h3 style="font-family: Arial, sans-serif; font-size: 18px; color: black;">Phase 6: Final Evaluation and Analysis</h3>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <b>Objective:</b> Conduct a comprehensive evaluation of the final SINSR model, incorporating both quantitative metrics and qualitative analyses.
-</p>
-<ul style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <li>1. Quantitative metrics</li>
-    <ul>
-        <li>PSNR</li>
-        <li>SSIM</li>
-        <li>LPIPS</li>
-    </ul>
+<h3>Phase 6: Final Evaluation and Analysis</h3>
+<p><b>Objective:</b> Conduct a comprehensive evaluation of the final SINSR model, incorporating both quantitative metrics and qualitative analyses.</p>
+
+<h4>1. Quantitative Metrics</h4>
+<ul>
+    <li>PSNR</li>
+    <li>SSIM</li>
+    <li>LPIPS</li>
 </ul>
-<ul style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <li>Outcome: A fully developed and evaluated SINSR model, ready for application in downstream scientific analyses.</li>
-</ul>
+
+<p><b>Outcome:</b> A fully developed and evaluated SINSR model, ready for application in downstream scientific analyses.</p>
 
 <h2 style="font-family: Arial, sans-serif; font-size: 20px; color: black;">More References</h2>
 <ol style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
