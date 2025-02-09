@@ -4,18 +4,20 @@ from tensorflow.keras.applications import VGG19 # type: ignore
 
 
 # Define loss functions
-def adversarial_loss(y_true, y_pred):
+def adversarial_loss(real_output, fake_output):
     """
     Computes the adversarial loss using binary cross-entropy.
 
     Args:
-    - y_true (Tensor): Ground truth labels.
-    - y_pred (Tensor): Predicted labels.
+    - real_output (Tensor): Ground truth labels.
+    - fake_output (Tensor): Predicted labels.
 
     Returns:
     - Tensor: Adversarial loss.
     """
-    return tf.reduce_mean(tf.keras.losses.BinaryCrossentropy()(y_true, y_pred))
+    adv_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=real_output, labels=tf.ones_like(real_output))) + \
+               tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_output, labels=tf.zeros_like(fake_output)))
+    return adv_loss
 
 def perceptual_loss(vgg, y_true, y_pred):
     """
