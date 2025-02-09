@@ -1,19 +1,21 @@
 
 {
   "initial_weights": {
-    "lambda_adv": 0.5,
-    "lambda_perceptual": 2.0,
-    "lambda_gradient": 0.8,
-    "lambda_second": 0.5,
-    "lambda_struct": 0.5,
-    "lambda_aux": 0.3
+    "adv": 1000.0,
+    "perc": 2.0,
+    "grad": 5000.0,
+    "second_grad": 1500.0,
+    "struct": 3000.0,
+    "aux": 5000.0
   },
   "final_weights": {
-    "lambda_adv": 0.3,
-    "lambda_perceptual": 1.5,
-    "lambda_gradient": 1.5,
-    "lambda_second": 0.5,
-    "lambda_struct": 1.5,
-    "lambda_aux": 1.8
-  }
+    "adv": 600.0,
+    "perc": 1.5,
+    "grad": 3500.0,
+    "second_grad": 1000.0,
+    "struct": 3500.0,
+    "aux": 4800.0
+  }
 }
+
+
