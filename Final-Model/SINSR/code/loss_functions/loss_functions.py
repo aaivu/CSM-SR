@@ -109,7 +109,7 @@ def structure_similarity_loss(y_true, y_pred):
     """
     return 1 - tf.reduce_mean(tf.image.ssim(y_true, y_pred, max_val=1.0))
 
-def structure_aware_loss(y_true, y_pred, lambda_tv=0.5, lambda_sm=0.25):
+def structure_aware_loss(y_true, y_pred, lambda_tv=0.25, lambda_sm=1.0):
     """
     Combines total variation and structural similarity losses.
 
@@ -122,7 +122,9 @@ def structure_aware_loss(y_true, y_pred, lambda_tv=0.5, lambda_sm=0.25):
     Returns:
     - Tensor: Combined structure-aware loss.
     """
-    return lambda_tv * total_variation_loss(y_pred) + lambda_sm * structure_similarity_loss(y_true, y_pred)
+    return lambda_sm * structure_similarity_loss(y_true, y_pred) + # lambda_tv * total_variation_loss(y_pred)
+
+
 
 def total_loss(vgg, y_true, y_pred, discriminator_output_real, discriminator_output_fake, 
                lambda_adv=1.0, lambda_perceptual=1.0, lambda_grad=1.0, 
