@@ -5,108 +5,6 @@ import tensorflow as tf
 from tensorflow.keras import layers, Model # type: ignore
 from tensorflow.keras.applications import VGG19 # type: ignore
 
-# # Custom PixelShuffle Layer
-# class PixelShuffle(layers.Layer):
-#     def __init__(self, scale, **kwargs):
-#         super(PixelShuffle, self).__init__(**kwargs)
-#         self.scale = scale
-
-#     def call(self, inputs):
-#         return tf.nn.depth_to_space(inputs, block_size=self.scale)
-
-# # Define Residual Dense Block (RDB) with Mixed Convolution Types
-# def residual_dense_block(x, filters, growth_rate=4, layers_in_block=4):
-#     concat_features = [x]
-#     for _ in range(layers_in_block):
-#         x = layers.Conv2D(growth_rate, (3, 3), padding='same')(x)  # Standard convolution
-#         x = layers.Activation('relu')(x)
-        
-#         # Dilated convolution
-#         x = layers.Conv2D(growth_rate, (3, 3), padding='same', dilation_rate=2)(x)
-#         x = layers.Activation('relu')(x)
-
-#         # Depthwise separable convolution
-#         x = layers.SeparableConv2D(growth_rate, (3, 3), padding='same')(x)
-#         x = layers.Activation('relu')(x)
-        
-#         concat_features.append(x)
-#         x = layers.Concatenate()(concat_features)
-    
-#     x = layers.Conv2D(filters, (3, 3), padding='same')(x)
-#     return x
-
-# # Define Residual-in-Residual Dense Block (RRDB)
-# def rrdb(x, filters, growth_rate=4, res_block=4):
-#     res = layers.Conv2D(filters, (3, 3), padding='same')(x)
-#     for _ in range(res_block):
-#         x = residual_dense_block(x, filters, growth_rate)
-#     return layers.Add()([x, layers.Lambda(lambda x: x * 0.2)(res)])
-
-# # def vgg_feature_extractor(input_shape):
-# #     vgg = VGG19(include_top=False, weights='imagenet', input_shape=input_shape)
-# #     vgg.trainable = False
-# #     layers = ['block1_conv2', 'block2_conv2', 'block3_conv3', 'block4_conv3', 'block5_conv3']
-# #     feature_extractor = tf.keras.Model(inputs=vgg.input, outputs=[vgg.get_layer(name).output for name in layers])
-# #     return feature_extractor
-# def vgg_feature_extractor(input_shape):
-#     vgg = VGG19(include_top=False, weights='imagenet', input_shape=input_shape)
-#     vgg.trainable = False
-#     return vgg
-
-# def generator(input_shape=(192, 256, 3)):
-#     inputs = layers.Input(shape=input_shape)
-#     extracted_features = layers.Input(shape=(None, None, 512))  # VGG19 features have shape (height, width, 512)
-
-#     # Use the last VGG19 block's features and reshape them
-#     reshaped_features = tf.image.resize(extracted_features, size=(inputs.shape[1], inputs.shape[2]))  # Resize to match input dimensions
-#     reshaped_features = layers.Conv2D(128, (1, 1), padding='same', activation='relu')(reshaped_features)  # Reduce dimensionality
-#     concatenated_input = layers.Concatenate()([inputs, reshaped_features])
-
-#     # Original scale
-#     x = layers.Conv2D(128, (3, 3), padding='same')(concatenated_input)
-#     x = layers.Activation('relu')(x)
-    
-#     # Original scale processing (scale1)
-#     scale1 = x
-#     for _ in range(3):
-#         scale1 = rrdb(scale1, 128)
-
-#     # Downscale by 2 (scale2)
-#     scale2 = layers.AveragePooling2D(pool_size=(2, 2))(x)
-#     for _ in range(3):
-#         scale2 = rrdb(scale2, 128)
-#     # Upscale by 2
-#     scale2 = PixelShuffle(scale=2)(scale2)
-
-#     # Upscale by 2 (scale4)
-#     scale4 = PixelShuffle(scale=2)(x)
-#     for _ in range(3):
-#         scale4 = rrdb(scale4, 128)
-#     # Downscale by 2
-#     scale4 = layers.AveragePooling2D(pool_size=(2, 2))(scale4)
-    
-#     # Concatenate multi-scale features
-#     multi_scale = layers.Concatenate()([scale1, scale2, scale4])
-    
-#     # Additional convolutional layers
-#     multi_scale = layers.Conv2D(128, (3, 3), padding='same')(multi_scale)
-#     multi_scale = layers.Activation('relu')(multi_scale)
-    
-#     # Upscale by 2
-#     multi_scale = PixelShuffle(scale=2)(multi_scale)
-#     multi_scale = layers.Conv2D(128, (3, 3), padding='same')(multi_scale)
-#     multi_scale = layers.Activation('relu')(multi_scale)
-    
-#     # Upscale by 2
-#     multi_scale = PixelShuffle(scale=2)(multi_scale)
-#     multi_scale = layers.Conv2D(3, (3, 3), padding='same')(multi_scale)
-    
-#     # Final output
-#     outputs = layers.Conv2D(3, (3, 3), padding='same', activation='tanh')(multi_scale)
-    
-#     return Model([inputs, extracted_features], outputs, name='Generator')
-
-
 # Custom PixelShuffle Layer
 class PixelShuffle(layers.Layer):
     def __init__(self, scale, **kwargs):
@@ -258,6 +156,106 @@ def discriminator(input_shape=(768, 1024, 3)):
     x = layers.Conv2D(1, (4, 4), padding='same')(x)
     return Model(inputs, x)
 
+# # Custom PixelShuffle Layer
+# class PixelShuffle(layers.Layer):
+#     def __init__(self, scale, **kwargs):
+#         super(PixelShuffle, self).__init__(**kwargs)
+#         self.scale = scale
+
+#     def call(self, inputs):
+#         return tf.nn.depth_to_space(inputs, block_size=self.scale)
+
+# # Define Residual Dense Block (RDB) with Mixed Convolution Types
+# def residual_dense_block(x, filters, growth_rate=4, layers_in_block=4):
+#     concat_features = [x]
+#     for _ in range(layers_in_block):
+#         x = layers.Conv2D(growth_rate, (3, 3), padding='same')(x)  # Standard convolution
+#         x = layers.Activation('relu')(x)
+        
+#         # Dilated convolution
+#         x = layers.Conv2D(growth_rate, (3, 3), padding='same', dilation_rate=2)(x)
+#         x = layers.Activation('relu')(x)
+
+#         # Depthwise separable convolution
+#         x = layers.SeparableConv2D(growth_rate, (3, 3), padding='same')(x)
+#         x = layers.Activation('relu')(x)
+        
+#         concat_features.append(x)
+#         x = layers.Concatenate()(concat_features)
+    
+#     x = layers.Conv2D(filters, (3, 3), padding='same')(x)
+#     return x
+
+# # Define Residual-in-Residual Dense Block (RRDB)
+# def rrdb(x, filters, growth_rate=4, res_block=4):
+#     res = layers.Conv2D(filters, (3, 3), padding='same')(x)
+#     for _ in range(res_block):
+#         x = residual_dense_block(x, filters, growth_rate)
+#     return layers.Add()([x, layers.Lambda(lambda x: x * 0.2)(res)])
+
+# # def vgg_feature_extractor(input_shape):
+# #     vgg = VGG19(include_top=False, weights='imagenet', input_shape=input_shape)
+# #     vgg.trainable = False
+# #     layers = ['block1_conv2', 'block2_conv2', 'block3_conv3', 'block4_conv3', 'block5_conv3']
+# #     feature_extractor = tf.keras.Model(inputs=vgg.input, outputs=[vgg.get_layer(name).output for name in layers])
+# #     return feature_extractor
+# def vgg_feature_extractor(input_shape):
+#     vgg = VGG19(include_top=False, weights='imagenet', input_shape=input_shape)
+#     vgg.trainable = False
+#     return vgg
+
+# def generator(input_shape=(192, 256, 3)):
+#     inputs = layers.Input(shape=input_shape)
+#     extracted_features = layers.Input(shape=(None, None, 512))  # VGG19 features have shape (height, width, 512)
+
+#     # Use the last VGG19 block's features and reshape them
+#     reshaped_features = tf.image.resize(extracted_features, size=(inputs.shape[1], inputs.shape[2]))  # Resize to match input dimensions
+#     reshaped_features = layers.Conv2D(128, (1, 1), padding='same', activation='relu')(reshaped_features)  # Reduce dimensionality
+#     concatenated_input = layers.Concatenate()([inputs, reshaped_features])
+
+#     # Original scale
+#     x = layers.Conv2D(128, (3, 3), padding='same')(concatenated_input)
+#     x = layers.Activation('relu')(x)
+    
+#     # Original scale processing (scale1)
+#     scale1 = x
+#     for _ in range(3):
+#         scale1 = rrdb(scale1, 128)
+
+#     # Downscale by 2 (scale2)
+#     scale2 = layers.AveragePooling2D(pool_size=(2, 2))(x)
+#     for _ in range(3):
+#         scale2 = rrdb(scale2, 128)
+#     # Upscale by 2
+#     scale2 = PixelShuffle(scale=2)(scale2)
+
+#     # Upscale by 2 (scale4)
+#     scale4 = PixelShuffle(scale=2)(x)
+#     for _ in range(3):
+#         scale4 = rrdb(scale4, 128)
+#     # Downscale by 2
+#     scale4 = layers.AveragePooling2D(pool_size=(2, 2))(scale4)
+    
+#     # Concatenate multi-scale features
+#     multi_scale = layers.Concatenate()([scale1, scale2, scale4])
+    
+#     # Additional convolutional layers
+#     multi_scale = layers.Conv2D(128, (3, 3), padding='same')(multi_scale)
+#     multi_scale = layers.Activation('relu')(multi_scale)
+    
+#     # Upscale by 2
+#     multi_scale = PixelShuffle(scale=2)(multi_scale)
+#     multi_scale = layers.Conv2D(128, (3, 3), padding='same')(multi_scale)
+#     multi_scale = layers.Activation('relu')(multi_scale)
+    
+#     # Upscale by 2
+#     multi_scale = PixelShuffle(scale=2)(multi_scale)
+#     multi_scale = layers.Conv2D(3, (3, 3), padding='same')(multi_scale)
+    
+#     # Final output
+#     outputs = layers.Conv2D(3, (3, 3), padding='same', activation='tanh')(multi_scale)
+    
+#     return Model([inputs, extracted_features], outputs, name='Generator')
 
 
 '''# Custom PixelShuffle Layer
