@@ -204,8 +204,13 @@ def feature_matching_loss(vgg, y_true, y_pred):
 
 
 def total_loss(vgg, y_true, y_pred, discriminator_output_real, discriminator_output_fake, 
-               lambda_adv=1.0, lambda_perceptual=1.0, lambda_grad=1.0, 
-               lambda_second=1.0, lambda_struct=1.0):
+               lambda_adv=1.0, 
+               lambda_perceptual=1.0, 
+               lambda_gradient=1.0, 
+               lambda_second=1.0, 
+               lambda_struct=1.0, 
+               lambda_aux=1.0
+               ):
     """
     Computes the total loss as a weighted sum of different loss components.
 
@@ -230,8 +235,19 @@ def total_loss(vgg, y_true, y_pred, discriminator_output_real, discriminator_out
     grad_loss = gradient_loss(y_true, y_pred)
     second_grad_loss = second_order_gradient_loss(y_true, y_pred)
     struct_loss = structure_aware_loss(y_true, y_pred)
-
-    total_loss_value = (lambda_adv * adv_loss) + (lambda_perceptual * perc_loss) + (lambda_grad * grad_loss) + \
-                       (lambda_second * second_grad_loss) + (lambda_struct * struct_loss)
+    aux_loss = auxiliary_loss(y_true, y_pred)
     
-    return total_loss_value
+    # fm_loss = feature_matching_loss(vgg, y_true, y_pred)
+
+    total_loss_value = (lambda_adv * adv_loss) + (lambda_perceptual * perc_loss)  + (lambda_gradient * grad_loss)+ \
+                       (lambda_second * second_grad_loss) + (lambda_struct * struct_loss) + (lambda_aux * aux_loss) #+ (fm_loss)
+    
+    individual_losses = { 
+        'adv': adv_loss, 
+        'perc': perc_loss, 
+        'grad': grad_loss, 
+        'second_grad': second_grad_loss, 
+        'struct': struct_loss, 
+        'aux': aux_loss } 
+    
+    return total_loss_value, individual_losses
