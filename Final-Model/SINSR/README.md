@@ -2,7 +2,8 @@
 
 This project aims to develop a deep learning model for super-resolution image generation using a combination of convolutional neural networks (CNNs), residual blocks, attention mechanisms, and upsampling layers. The project leverages both TensorFlow and PyTorch for data management, model architecture, training, and evaluation.
 
-<pre> ## Project Structure <br>
+## Project Structure <br>
+<pre> 
 |-- architectures/
 |   |-- architecture_1.py
 |   |-- architecture_2.py
@@ -16,10 +17,16 @@ This project aims to develop a deep learning model for super-resolution image ge
 |-- loss_functions/
 |   |-- loss_functions.py
 |-- mtrics/
-|   |-- 
+|   |-- evaluation_metrics.py
 |-- utils/
+|   |-- callbacks.py
+|   |-- config_loader.py
 |   |-- data_loader.py
+|   |-- data_loader_lmdb.py
+|   |-- model_setup.py
 |   |-- train_util.py
+|   |-- training_functions.py
+|   |-- utilities.py
 |-- test.py
 |-- train.py
 |-- README.md
