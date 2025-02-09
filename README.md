@@ -5,7 +5,7 @@
 </head>
 <body>
     <p><img src="https://img.shields.io/badge/-Project-blue" alt="Project"> <img src="https://img.shields.io/badge/-Research-yellowgreen" alt="Research">      </p>
-<h2>Project Lead(s)</h2>
+<h2>Project Lead</h2>
     <ul>
         <li><a href="talk_forum_profile_link">Dr. Uthayasanker Thayasivam</a></li>
     </ul>
