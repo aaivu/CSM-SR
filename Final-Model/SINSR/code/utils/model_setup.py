@@ -1,0 +1,90 @@
+import tensorflow as tf
+from tensorflow.keras.applications import VGG19, EfficientNetB7 # type: ignore
+from tensorflow.keras.models import Model   # type: ignore
+from tensorflow.keras import layers  # type: ignore
+# def setup_model_and_optimizers(strategy, architecture_module, model_config, train_config):
+#     with strategy.scope():
+#         generator = architecture_module.generator()
+#         discriminator = architecture_module.discriminator()
+#         vgg = VGG19(include_top=False, weights='imagenet', input_shape=tuple(train_config['vgg_input_shape']))
+#         vgg.trainable = False
+
+#         generator_optimizer = tf.keras.optimizers.Adagrad(learning_rate=train_config['learning_rates']['generator'])
+#         discriminator_optimizer = tf.keras.optimizers.Adagrad(learning_rate=train_config['learning_rates']['discriminator'])
+
+#     return generator, discriminator, vgg, generator_optimizer, discriminator_optimizer
+
+from tensorflow.keras.applications import VGG19 # type: ignore
+from tensorflow.keras.models import Model # type: ignore
+
+def create_flexible_vgg():
+    vgg_base = VGG19(include_top=False, weights='imagenet')
+    vgg_base.trainable = False
+    output_layers = [vgg_base.get_layer(name).output for name in ['block1_conv2', 'block2_conv2', 'block3_conv3', 'block4_conv3', 'block5_conv3']]
+    model = Model(inputs=vgg_base.input, outputs=output_layers)
+    return model
+
+def setup_model_and_optimizers(strategy, architecture_module, model_config, train_config):
+
+    initial_lr_gen = train_config['learning_rates']['generator']
+    initial_lr_disc = train_config['learning_rates']['discriminator']
+
+    lr_schedule_gen = tf.keras.optimizers.schedules.ExponentialDecay(
+        initial_learning_rate=initial_lr_gen,
+        decay_steps=100000,
+        decay_rate=0.96,
+        staircase=True)
+
+    lr_schedule_disc = tf.keras.optimizers.schedules.ExponentialDecay(
+        initial_learning_rate=initial_lr_disc,
+        decay_steps=100000,
+        decay_rate=0.96,
+        staircase=True)
+    
+    with strategy.scope():
+        generator = architecture_module.generator()
+        discriminator = architecture_module.discriminator()
+        # # vgg = VGG19(include_top=False, weights='imagenet', input_shape=tuple(train_config['vgg_input_shape']))
+        # vgg = VGG19(include_top=False, weights='imagenet', input_shape=tuple(train_config['vgg_input_shape']))
+        # vgg.trainable = False
+        flexible_vgg = create_flexible_vgg()
+        generator_optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule_gen)
+        discriminator_optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule_disc)
+
+    return generator, discriminator, flexible_vgg, generator_optimizer, discriminator_optimizer
+
+    # with strategy.scope():
+    #     generator = architecture_module.generator()
+    #     discriminator = architecture_module.discriminator()
+    #     efficientnet = EfficientNetB7(include_top=False, weights='imagenet')
+    #     efficientnet.trainable = False
+
+    #     vgg = VGG19(include_top=False, weights='imagenet', input_shape=tuple(train_config['vgg_input_shape']))
+    #     vgg.trainable = False
+
+    #     # Extract features from a specific layer
+    #     efficientnet = Model(inputs=efficientnet.input, outputs=efficientnet.get_layer('block6e_add').output)
+    #     # Adjust channels from 384 to 512 to align with the generator
+    #     efficientnet = Model(inputs=efficientnet.input, outputs=layers.Conv2D(2048, (1, 1), padding='same')(efficientnet.output))
+
+    #     generator_optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule_gen)
+    #     discriminator_optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule_disc)
+
+    # return generator, discriminator, efficientnet, vgg,  generator_optimizer, discriminator_optimizer
+
+## Multiple feature extraction layers
+    # with strategy.scope():
+    #     generator = architecture_module.generator()
+    #     discriminator = architecture_module.discriminator()
+    #     vgg = VGG19(include_top=False, weights='imagenet', input_shape=tuple(train_config['vgg_input_shape']))
+    #     vgg.trainable = False
+
+    #     # Create models to extract features at different scales
+    #     feature_extractor_1 = tf.keras.Model(inputs=vgg.input, outputs=vgg.get_layer('block5_conv3').output)  # (24, 32, 512)
+    #     feature_extractor_2 = tf.keras.Model(inputs=vgg.input, outputs=vgg.get_layer('block3_conv4').output)  # (48, 64, 256)
+    #     feature_extractor_3 = tf.keras.Model(inputs=vgg.input, outputs=vgg.get_layer('block1_conv2').output)  # (96, 128, 128)
+
+    #     generator_optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule_gen)
+    #     discriminator_optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule_disc)
+
+    # return generator, discriminator, [feature_extractor_1, feature_extractor_2, feature_extractor_3], generator_optimizer, discriminator_optimizer
