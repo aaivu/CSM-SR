@@ -31,11 +31,22 @@ def perceptual_loss(vgg, y_true, y_pred):
     Returns:
     - Tensor: Perceptual loss.
     """
-    y_true = tf.image.resize(y_true, (1024, 768))  # Ensure y_true is resized
-    y_pred = tf.image.resize(y_pred, (1024, 768))  # Ensure y_pred is resized
-    vgg_features_true = vgg(y_true)
-    vgg_features_pred = vgg(y_pred)
-    return tf.reduce_mean(tf.square(vgg_features_true - vgg_features_pred))
+    y_true = tf.keras.applications.vgg19.preprocess_input(y_true * 255.0)
+    y_pred = tf.keras.applications.vgg19.preprocess_input(y_pred * 255.0)
+
+    layers = ['block1_conv2', 'block2_conv2', 'block3_conv3', 'block4_conv3', 'block5_conv3']
+
+    feature_extractor = tf.keras.Model(inputs=vgg.input, outputs=[vgg.get_layer(name).output for name in layers])
+    
+    # weights = [2.0, 2.0, 1.0, 1.0, 1.5]  # Emphasize higher layers
+
+    vgg_features_true = feature_extractor(y_true)
+    vgg_features_pred = feature_extractor(y_pred)
+    
+    perc_loss = tf.reduce_mean([tf.reduce_mean(tf.square(f_true - f_pred)) for f_true, f_pred in zip(vgg_features_true, vgg_features_pred)]) ## added weight for this..
+    # perc_loss = tf.add_n([w * tf.reduce_mean(tf.square(f_true - f_pred))
+    #                       for w, f_true, f_pred in zip(weights, vgg_features_true, vgg_features_pred)])
+    return perc_loss
 
 def gradient_loss(y_true, y_pred):
     """
