@@ -124,6 +124,55 @@ def structure_aware_loss(y_true, y_pred, lambda_tv=0.25, lambda_sm=1.0):
     """
     return lambda_sm * structure_similarity_loss(y_true, y_pred) + # lambda_tv * total_variation_loss(y_pred)
 
+def color_consistency_loss(y_true, y_pred):
+    return tf.reduce_mean(tf.abs(y_true - y_pred))
+
+def texture_matching_loss(y_true, y_pred):
+    grad_true = tf.image.sobel_edges(y_true)
+    grad_pred = tf.image.sobel_edges(y_pred)
+    return tf.reduce_mean(tf.abs(grad_true - grad_pred))
+
+def contextual_loss(y_true, y_pred, h=0.5):
+    def cosine_similarity(x1, x2):
+        x1 = tf.nn.l2_normalize(x1, axis=-1)
+        x2 = tf.nn.l2_normalize(x2, axis=-1)
+        return tf.reduce_sum(x1 * x2, axis=-1)
+    
+    def contextual_similarity(y_true_patches, y_pred_patches):
+        cs = cosine_similarity(y_true_patches, y_pred_patches)
+        return cs / (tf.reduce_sum(cs, axis=-1, keepdims=True) + 1e-5)
+    
+    y_true_patches = tf.image.extract_patches(y_true, sizes=[1, 3, 3, 1], strides=[1, 1, 1, 1], rates=[1, 1, 1, 1], padding='SAME')
+    y_pred_patches = tf.image.extract_patches(y_pred, sizes=[1, 3, 3, 1], strides=[1, 1, 1, 1], rates=[1, 1, 1, 1], padding='SAME')
+    
+    y_true_patches = tf.reshape(y_true_patches, (tf.shape(y_true)[0], -1, 3, 3, tf.shape(y_true)[-1]))
+    y_pred_patches = tf.reshape(y_pred_patches, (tf.shape(y_pred)[0], -1, 3, 3, tf.shape(y_pred)[-1]))
+    
+    cs = contextual_similarity(y_true_patches, y_pred_patches)
+    cs = tf.clip_by_value(cs, 1e-10, 1.0)  # Clip values to avoid log(0)
+    # cont_loss = -tf.reduce_sum(tf.math.log(cs))
+    cont_loss = -tf.reduce_sum(tf.math.log(cs)) / tf.cast(tf.size(cs), tf.float32) # Normalize loss return cont_loss
+    return cont_loss
+
+def gram_matrix(x):
+    channels = int(x.shape[-1])
+    a = tf.reshape(x, [-1, channels])
+    n = tf.shape(a)[0]
+    gram = tf.matmul(a, a, transpose_a=True)
+    return gram / tf.cast(n, tf.float32)
+
+def style_checking_loss(y_true, y_pred):
+    gram_true = gram_matrix(y_true)
+    gram_pred = gram_matrix(y_pred)
+    return tf.reduce_mean(tf.square(gram_true - gram_pred))
+
+def auxiliary_loss(y_true, y_pred, lambda_color=0.5, lambda_texture=0.5, lambda_cont=0.25):
+    color_loss = color_consistency_loss(y_true, y_pred)
+    texture_loss = texture_matching_loss(y_true, y_pred)
+    # style_loss = style_checking_loss(y_true, y_pred)
+    cont_loss = contextual_loss(y_true, y_pred)
+    # cont_loss = quantum_loss(y_true, y_pred)
+    return lambda_color * color_loss + lambda_texture * texture_loss + lambda_cont * cont_loss #+ lambda_cont * style_loss
 
 
 def total_loss(vgg, y_true, y_pred, discriminator_output_real, discriminator_output_fake, 
