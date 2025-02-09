@@ -1,22 +1,32 @@
 {
-    "train_hr_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/data/DIV2K/DIV2K_train_HR",
-    "train_lr_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/data/DIV2K/DIV2K_train_LR_bicubic/X4",
-    "valid_hr_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/data/DIV2K/DIV2K_valid_HR",
-    "valid_lr_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/data/DIV2K/DIV2K_valid_LR_bicubic/X4",
-    "target_size_hr": [1024, 768],
-    "target_size_lr": [ 256, 192],
+    "train_hr_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/data/S1/train_HR",
+    "train_lr_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/data/S1/train_LR",
+    "valid_hr_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/data/S1/valid_HR",
+    "valid_lr_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/data/S1/valid_LR",
+    "target_size_hr": [
+        2040,
+        1404
+    ],
+    "target_size_lr": [
+        510,
+        351
+    ],
     "batch_size": 1,
- 
     "generator_model_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/models/pretrained_generator",
-    "save_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/data/results/generated_images3",
-    "model_save_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/models/generator",
-    "vgg_input_shape": [1024, 768, 3],
+    "generator_save_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/models/generator7_t1_6d",
+    "save_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/experimental_results/train_gen/generated_images7_t1_6d",
+    "log_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/experimental_results/logs7_t1_6d",
+    "model_save_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/models/generator7_t1_6d",
+    "vgg_input_shape": [
+        480,
+        320,
+        3
+    ],
     "learning_rates": {
-      "generator": 1e-5,
-      "discriminator": 1e-6
+        "generator": 0.0001,
+        "discriminator": 1e-05
     },
-    "epochs": 100,
+    "epochs": 200,
     "generator_steps": 10,
     "save_interval": 10
-  }
-  
+}
