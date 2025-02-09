@@ -2,17 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Structure-informed super resolution technique for scientific imaging</title>
+    <h1>Structure-informed super resolution technique for scientific imaging</h1>
 </head>
 <body>
 ![project] ![research]
 
 - <b>Project Lead(s) / Mentor(s)</b>
-    1. Name (talk forum profile link)
-    2. Name (talk forum profile link)
+    1. Dr. Uthayasanker Thayasivam (talk forum profile link)
+    2. Brinthan, Vithurabhiman (talk forum profile link)
 - <b>Contributor(s)</b>
-    1. Name (talk forum profile link)
-    2. Name (talk forum profile link)
+    1. Randika Prabashwara (talk forum profile link)
+    2. Gayani Wickramarathna (talk forum profile link)
+    3. Oshadi Perera (talk forum profile link)
 
 <b>Useful Links </b>
 
