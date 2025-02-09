@@ -130,9 +130,11 @@ This research project proposes a novel approach to integrate structural informat
 <li>Dataset 1 : <a href="https://b2share.eudat.eu/records/19cc2afd23e34b92b36a1dfd0113a89f">NFFA-EUROPE - SEM Dataset</a></li>
 </ol>
 
+
+[project]: https://img.shields.io/badge/-Project-blue
+[research]: https://img.shields.io/badge/-Research-yellowgreen
+
 </body>
 </html>
 
 
-[project]: https://img.shields.io/badge/-Project-blue
-[research]: https://img.shields.io/badge/-Research-yellowgreen
