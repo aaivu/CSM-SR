@@ -149,9 +149,6 @@
 <h3 style="font-family: Arial, sans-serif; font-size: 18px; color: black;">Code of Conduct</h3>
 <p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">Please read our <a href="https://github.com/aaivu/aaivu-introduction/blob/master/docs/code_of_conduct.md">code of conduct document here</a>.</p>
 
-<img src="https://img.shields.io/badge/-Project-blue" alt="Project">
-<img src="https://img.shields.io/badge/-Research-yellowgreen" alt="Research">
-
 </body>
 </html>
 
