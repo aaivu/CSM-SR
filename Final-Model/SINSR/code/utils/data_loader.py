@@ -1,74 +1,51 @@
 import os
-import json
-import numpy as np
-import tensorflow as tf
-from torch.utils.data import Dataset, DataLoader
 import cv2
+from torch.utils.data import Dataset
+from PIL import Image  # Import the Image module from Pillow
+import json
 
-# Load configuration
-config_path = '/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/code/config/train.json'  # Update this path accordingly
-with open(config_path, 'r') as f:
-    config = json.load(f)
+def get_image_dimensions(image_path):
+    with Image.open(image_path) as img:
+        width, height = img.size
+    return width, height
 
-# Define the ImageDataset class for loading data directly from disk
-class ImageDataset(Dataset):
-    def __init__(self, image_dir, target_size):
-        """
-        Initializes the ImageDataset instance.
+def update_json_file(config_path, config):
+    with open(config_path, 'w') as f:
+        json.dump(config, f, indent=4)
 
-        Args:
-        - image_dir (str): Directory containing the images.
-        - target_size (tuple): Target size for the images.
-        """
-        self.image_paths = [os.path.join(image_dir, fname) for fname in os.listdir(image_dir)]
-        self.target_size = (target_size[1], target_size[0]) # Ensure the size is (width, height)
+class PairedImageDataset(Dataset):
+    def __init__(self, lr_image_dir, hr_image_dir, lr_target_size, hr_target_size, train_config):
+        self.lr_image_paths = sorted([os.path.join(lr_image_dir, fname) for fname in os.listdir(lr_image_dir)])
+        self.hr_image_paths = sorted([os.path.join(hr_image_dir, fname) for fname in os.listdir(hr_image_dir)])
+        self.train_config = train_config
+        self.config_path = "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/code/config/train.json"
 
     def __len__(self):
-        """
-        Returns the number of images in the directory.
-
-        Returns:
-        - int: Number of images.
-        """
-        return len(self.image_paths)
+        return len(self.lr_image_paths)
 
     def __getitem__(self, idx):
-        """
-        Retrieves and preprocesses an image from the directory.
+        lr_image_path = self.lr_image_paths[idx]
+        hr_image_path = self.hr_image_paths[idx]
+        
+        lr_image = cv2.imread(lr_image_path)
+        hr_image = cv2.imread(hr_image_path)
+        
+        if lr_image is None or hr_image is None:
+            raise ValueError(f"Error reading image {lr_image_path} or {hr_image_path}")
 
-        Args:
-        - idx (int): Index of the image to retrieve.
-
-        Returns:
-        - np.ndarray: Retrieved and preprocessed image.
-        """
-        image_path = self.image_paths[idx]
-        image = cv2.imread(image_path)
-        if image is None:
-            raise ValueError(f"Error reading image {image_path}")
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB
-        image = cv2.resize(image, self.target_size)  # Resize to target size
-        image = image / 255.0  # Normalize to [0, 1]
-        return image
-
-# Update the paths and target shapes
-train_hr_path = config['train_hr_path']
-train_lr_path = config['train_lr_path']
-valid_hr_path = config['valid_hr_path']
-valid_lr_path = config['valid_lr_path']
-target_size_hr = (config['target_size_hr'][1], config['target_size_hr'][0])                   # Ensure correct order (width, height)
-target_size_lr = (config['target_size_lr'][1], config['target_size_lr'][0])                   # Ensure correct order (width, height)
-batch_size = config['batch_size']
-
-# Initialize the datasets
-train_hr_dataset = ImageDataset(train_hr_path, target_size_hr)  # Ensure target_size matches preprocessing
-train_lr_dataset = ImageDataset(train_lr_path, target_size_lr)  # Ensure target_size matches preprocessing
-valid_hr_dataset = ImageDataset(valid_hr_path, target_size_hr)  # Ensure target_size matches preprocessing
-valid_lr_dataset = ImageDataset(valid_lr_path, target_size_lr)  # Ensure target_size matches preprocessing
-
-# Create DataLoaders
-train_hr_dataloader = DataLoader(train_hr_dataset, batch_size=batch_size, shuffle=True)
-train_lr_dataloader = DataLoader(train_lr_dataset, batch_size=batch_size, shuffle=True)
-valid_hr_dataloader = DataLoader(valid_hr_dataset, batch_size=batch_size, shuffle=False)
-valid_lr_dataloader = DataLoader(valid_lr_dataset, batch_size=batch_size, shuffle=False)
-
+        lr_image = cv2.cvtColor(lr_image, cv2.COLOR_BGR2RGB)
+        hr_image = cv2.cvtColor(hr_image, cv2.COLOR_BGR2RGB)
+        
+        # Get the dimensions of the current HR image
+        hr_width, hr_height = get_image_dimensions(hr_image_path)
+        
+        # Update the configuration dynamically
+        self.train_config['vgg_input_shape'] = [hr_height, hr_width, 3]
+        
+        # Write the updated configuration back to the JSON file
+        update_json_file(self.config_path, self.train_config)
+        
+        lr_image = lr_image / 127.5 - 1
+        hr_image = hr_image / 255
+        
+        return lr_image, hr_image
