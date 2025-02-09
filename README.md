@@ -19,8 +19,33 @@
 
 - GitHub : <project_url>
 - Talk Forum : <talk_forum_link>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Structure-Informed Super Resolution Technique for Scientific Imaging</title>
+</head>
+<body>
+    <h1>Structure-Informed Super Resolution Technique for Scientific Imaging</h1>
+    <p><img src="https://img.shields.io/badge/-Project-blue" alt="Project"> <img src="https://img.shields.io/badge/-Research-yellowgreen" alt="Research"></p>
+<h2>Project Lead(s) / Mentor(s)</h2>
+    <ul>
+        <li><a href="talk_forum_profile_link">Dr. Uthayasanker Thayasivam</a></li>
+        <li><a href="talk_forum_profile_link">Brinthan, Vithurabhiman</a></li>
+    </ul>
 
----
+<h2>Contributor(s)</h2>
+    <ul>
+        <li><a href="talk_forum_profile_link">Randika Prabashwara</a></li>
+        <li><a href="talk_forum_profile_link">Gayani Wickramarathna</a></li>
+        <li><a href="talk_forum_profile_link">Oshadi Perera</a></li>
+    </ul>
+
+<h2>Useful Links</h2>
+    <ul>
+        <li><a href="project_url">GitHub</a></li>
+        <li><a href="talk_forum_link">Talk Forum</a></li>
+    </ul>
+
 <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 30px; color: blue;">
     <b>Summary</b>
 </h1>
