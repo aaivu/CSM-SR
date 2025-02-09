@@ -174,6 +174,34 @@ def auxiliary_loss(y_true, y_pred, lambda_color=0.5, lambda_texture=0.5, lambda_
     # cont_loss = quantum_loss(y_true, y_pred)
     return lambda_color * color_loss + lambda_texture * texture_loss + lambda_cont * cont_loss #+ lambda_cont * style_loss
 
+# Define the global variable for the feature extractor
+feature_extractor = None
+
+def get_feature_extractor():
+    global feature_extractor
+    if feature_extractor is None:
+        vgg = VGG19(include_top=False, weights='imagenet')
+        layers = ['block1_conv2', 'block2_conv2', 'block3_conv3', 'block4_conv3', 'block5_conv3']
+        feature_extractor = tf.keras.Model(inputs=vgg.input, outputs=[vgg.get_layer(name).output for name in layers])
+    return feature_extractor
+
+def feature_matching_loss(vgg, y_true, y_pred):
+
+    # Preprocess the real and fake outputs
+    y_true = tf.keras.applications.vgg19.preprocess_input(y_true * 255.0)
+    y_pred = tf.keras.applications.vgg19.preprocess_input(y_pred * 255.0)
+
+    # Get the feature extractor
+    feature_extractor = get_feature_extractor()
+
+    real_features = feature_extractor(y_true)
+    fake_features = feature_extractor(y_pred)
+    loss = 0
+    for real, fake in zip(real_features, fake_features):
+        loss += tf.reduce_mean(tf.square(real - fake))
+    return loss
+
+
 
 def total_loss(vgg, y_true, y_pred, discriminator_output_real, discriminator_output_fake, 
                lambda_adv=1.0, lambda_perceptual=1.0, lambda_grad=1.0, 
