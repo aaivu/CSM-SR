@@ -12,11 +12,11 @@
         351
     ],
     "batch_size": 1,
-    "generator_model_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/models/pretrained_generator",
-    "generator_save_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/models/generator7_t1_6d",
-    "save_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/experimental_results/train_gen/generated_images7_t1_6d",
-    "log_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/experimental_results/logs7_t1_6d",
-    "model_save_path": "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/models/generator7_t1_6d",
+    "generator_model_path": "/Final-Model/SINSR/models/pretrained_generator",
+    "generator_save_path": "/Final-Model/SINSR/models/generator7_t1_6d",
+    "save_path": "/Final-Model/SINSR/experimental_results/train_gen/generated_images7_t1_6d",
+    "log_path": "/Final-Model/SINSR/experimental_results/logs7_t1_6d",
+    "model_save_path": "/Final-Model/SINSR/models/generator7_t1_6d",
     "vgg_input_shape": [
         480,
         320,
