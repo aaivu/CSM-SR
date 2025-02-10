@@ -11,9 +11,9 @@ from utils.data_loader import PairedImageDataset
 policy = tf.keras.mixed_precision.Policy('mixed_float16')
 tf.keras.mixed_precision.set_global_policy(policy)
 
-model_config = load_config('/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/code/config/model_config.json')
-train_config = load_config('/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/code/config/train.json')
-loss_weights_config = load_loss_weights('/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/Final-Model/SINSR/code/config/loss_config.json')
+model_config = load_config('/Final-Model/SINSR/code/config/model_config.json')
+train_config = load_config('/Final-Model/SINSR/code/config/train.json')
+loss_weights_config = load_loss_weights('/Final-Model/SINSR/code/config/loss_config.json')
 
 architecture_module = importlib.import_module(f'architectures.{model_config["model_architecture"]}')
 strategy = tf.distribute.MirroredStrategy()
