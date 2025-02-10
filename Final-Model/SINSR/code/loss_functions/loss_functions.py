@@ -122,8 +122,9 @@ def structure_aware_loss(y_true, y_pred, lambda_tv=0.25, lambda_sm=1.0):
     Returns:
     - Tensor: Combined structure-aware loss.
     """
-    return lambda_sm * structure_similarity_loss(y_true, y_pred) #+  lambda_tv * total_variation_loss(y_pred)
-
+    # return lambda_sm * structure_similarity_loss(y_true, y_pred) #+  lambda_tv * total_variation_loss(y_pred)
+    return lambda_sm * structure_similarity_loss(y_true, y_pred)
+    
 def color_consistency_loss(y_true, y_pred):
     return tf.reduce_mean(tf.abs(y_true - y_pred))
 
