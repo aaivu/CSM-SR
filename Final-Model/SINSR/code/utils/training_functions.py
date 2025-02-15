@@ -7,7 +7,7 @@ from utils.utilities import interpolate_weights, update_loss_weights, get_lr, cl
 from utils.train_util import distributed_train_step, distributed_validation_step, distributed_pretrain_step
 from utils.callbacks import get_callbacks
 from torch.utils.data import DataLoader
-from utils.model_setup import setup_model_and_optimizers
+from utils.model_setup import setup_model_and_optimizers#, update_vgg_input_shape
 import tensorflow as tf
 from tensorflow.keras import layers, Model # type: ignore
 import pandas as pd # type: ignore
@@ -189,6 +189,8 @@ def train(train_config, model_config, loss_weights_config, architecture_module, 
 
 
 """
+
+'''
 ###### FOR COLOR IMAGES ######
 from tensorflow.keras.callbacks import ModelCheckpoint # type: ignore
 from tensorflow.keras.applications import VGG19 # type: ignore
@@ -227,6 +229,8 @@ def train(train_config, model_config, loss_weights_config, architecture_module, 
             lr_images = tf.convert_to_tensor(lr_images.numpy().astype('float32'))
             # target_shape = train_config['vgg_input_shape']
             # feature_extractor = create_feature_extractor(target_shape)
+            # Update VGG input shape dynamically
+            # vgg = update_vgg_input_shape(vgg, train_config['vgg_input_shape'])
             gen_loss, disc_loss, generated_images, individual_losses = distributed_train_step(
                 lr_images, hr_images, generator, discriminator, vgg,
                 generator_optimizer, discriminator_optimizer, strategy,
@@ -319,7 +323,7 @@ def train(train_config, model_config, loss_weights_config, architecture_module, 
     for loss_name in ['total', 'adv', 'perc', 'grad', 'second_grad', 'struct', 'aux']:
         save_individual_losses(globals()[f"train_{loss_name}_loss"], globals()[f"val_{loss_name}_loss"], loss_name, train_config['log_path'])
 
-
+'''
 #########################################################################################
 
 
@@ -458,105 +462,105 @@ def train(train_config, model_config, loss_weights_config, architecture_module, 
 #     generator, discriminator, feature_extractors, generator_optimizer, discriminator_optimizer = setup_model_and_optimizers(strategy, architecture_module, model_config, train_config)
   
 ### Working best efficientnet ####
-# def train(train_config, model_config, loss_weights_config, architecture_module, strategy, train_dataloader, valid_dataloader):
-#     generator, discriminator, efficientnet, vgg, generator_optimizer, discriminator_optimizer = setup_model_and_optimizers(strategy, architecture_module, model_config, train_config)
+def train(train_config, model_config, loss_weights_config, architecture_module, strategy, train_dataloader, valid_dataloader):
+    generator, discriminator, efficientnet, vgg, generator_optimizer, discriminator_optimizer = setup_model_and_optimizers(strategy, architecture_module, model_config, train_config)
     
-#     initial_weights = loss_weights_config['initial_weights']
-#     final_weights = loss_weights_config['final_weights']
-#     current_weights = initial_weights.copy()
-#     callbacks = get_callbacks(train_config)
+    initial_weights = loss_weights_config['initial_weights']
+    final_weights = loss_weights_config['final_weights']
+    current_weights = initial_weights.copy()
+    callbacks = get_callbacks(train_config)
 
-#     for callback in callbacks:
-#         callback.set_model(generator)
-#         callback.model.optimizer = generator_optimizer
+    for callback in callbacks:
+        callback.set_model(generator)
+        callback.model.optimizer = generator_optimizer
 
-#     for epoch in range(train_config['epochs']):
-#         train_loss = {'total': 0, 'adv': 0, 'perc': 0, 'grad': 0, 'second_grad': 0, 'struct': 0, 'aux': 0}
-#         step = 0
+    for epoch in range(train_config['epochs']):
+        train_loss = {'total': 0, 'adv': 0, 'perc': 0, 'grad': 0, 'second_grad': 0, 'struct': 0, 'aux': 0}
+        step = 0
         
-#         for lr_images, hr_images in train_dataloader:
-#             hr_images = tf.convert_to_tensor(hr_images.numpy().astype('float32'))
-#             lr_images = tf.convert_to_tensor(lr_images.numpy().astype('float32'))
+        for lr_images, hr_images in train_dataloader:
+            hr_images = tf.convert_to_tensor(hr_images.numpy().astype('float32'))
+            lr_images = tf.convert_to_tensor(lr_images.numpy().astype('float32'))
 
-#             gen_loss, disc_loss, generated_images, individual_losses = distributed_train_step(
-#                 lr_images, hr_images, generator, discriminator, efficientnet, vgg,
-#                 generator_optimizer, discriminator_optimizer, strategy,
-#                 lambda_adv=current_weights['adv'],
-#                 lambda_perceptual=current_weights['perc'],
-#                 lambda_gradient=current_weights['grad'],
-#                 lambda_second=current_weights['second_grad'],
-#                 lambda_struct=current_weights['struct'],
-#                 lambda_aux=current_weights['aux']
-#             )
+            gen_loss, disc_loss, generated_images, individual_losses = distributed_train_step(
+                lr_images, hr_images, generator, discriminator, efficientnet, vgg,
+                generator_optimizer, discriminator_optimizer, strategy,
+                lambda_adv=current_weights['adv'],
+                lambda_perceptual=current_weights['perc'],
+                lambda_gradient=current_weights['grad'],
+                lambda_second=current_weights['second_grad'],
+                lambda_struct=current_weights['struct'],
+                lambda_aux=current_weights['aux']
+            )
 
-#             gathered_generated_images = strategy.gather(generated_images, axis=0)
-#             print(f"Epoch {epoch + 1}, Step {step}, Generator Loss: {gen_loss.numpy()}, Discriminator Loss: {disc_loss.numpy()}")
+            gathered_generated_images = strategy.gather(generated_images, axis=0)
+            print(f"Epoch {epoch + 1}, Step {step}, Generator Loss: {gen_loss.numpy()}, Discriminator Loss: {disc_loss.numpy()}")
 
-#             train_loss['total'] += gen_loss.numpy()
-#             for key in individual_losses:
-#                 train_loss[key] += individual_losses[key].numpy()
-#             step += 1
+            train_loss['total'] += gen_loss.numpy()
+            for key in individual_losses:
+                train_loss[key] += individual_losses[key].numpy()
+            step += 1
 
-#         num_train_batches = len(train_dataloader)
-#         train_total_loss.append(float(train_loss['total'] / num_train_batches))
-#         train_adv_loss.append(float(train_loss['adv'] / num_train_batches))
-#         train_perc_loss.append(float(train_loss['perc'] / num_train_batches))
-#         train_grad_loss.append(float(train_loss['grad'] / num_train_batches))
-#         train_second_grad_loss.append(float(train_loss['second_grad'] / num_train_batches))
-#         train_struct_loss.append(float(train_loss['struct'] / num_train_batches))
-#         train_aux_loss.append(float(train_loss['aux'] / num_train_batches))
+        num_train_batches = len(train_dataloader)
+        train_total_loss.append(float(train_loss['total'] / num_train_batches))
+        train_adv_loss.append(float(train_loss['adv'] / num_train_batches))
+        train_perc_loss.append(float(train_loss['perc'] / num_train_batches))
+        train_grad_loss.append(float(train_loss['grad'] / num_train_batches))
+        train_second_grad_loss.append(float(train_loss['second_grad'] / num_train_batches))
+        train_struct_loss.append(float(train_loss['struct'] / num_train_batches))
+        train_aux_loss.append(float(train_loss['aux'] / num_train_batches))
 
-#         val_loss = {'total': 0, 'adv': 0, 'perc': 0, 'grad': 0, 'second_grad': 0, 'struct': 0, 'aux': 0}
+        val_loss = {'total': 0, 'adv': 0, 'perc': 0, 'grad': 0, 'second_grad': 0, 'struct': 0, 'aux': 0}
 
-#         for lr_val_images, hr_val_images in valid_dataloader:
-#             hr_val_images = tf.convert_to_tensor(hr_val_images.numpy().astype('float32'))
-#             lr_val_images = tf.convert_to_tensor(lr_val_images.numpy().astype('float32'))
+        for lr_val_images, hr_val_images in valid_dataloader:
+            hr_val_images = tf.convert_to_tensor(hr_val_images.numpy().astype('float32'))
+            lr_val_images = tf.convert_to_tensor(lr_val_images.numpy().astype('float32'))
 
-#             val_t_loss, val_individual_losses = distributed_validation_step(
-#                 lr_val_images, hr_val_images, generator, discriminator, efficientnet, vgg, strategy,
-#                 lambda_adv=current_weights['adv'],
-#                 lambda_perceptual=current_weights['perc'],
-#                 lambda_gradient=current_weights['grad'],
-#                 lambda_second=current_weights['second_grad'],
-#                 lambda_struct=current_weights['struct'],
-#                 lambda_aux=current_weights['aux']
-#             )
+            val_t_loss, val_individual_losses = distributed_validation_step(
+                lr_val_images, hr_val_images, generator, discriminator, efficientnet, vgg, strategy,
+                lambda_adv=current_weights['adv'],
+                lambda_perceptual=current_weights['perc'],
+                lambda_gradient=current_weights['grad'],
+                lambda_second=current_weights['second_grad'],
+                lambda_struct=current_weights['struct'],
+                lambda_aux=current_weights['aux']
+            )
 
-#             val_loss['total'] += val_t_loss.numpy()
-#             for key in val_individual_losses:
-#                 val_loss[key] += val_individual_losses[key].numpy()
+            val_loss['total'] += val_t_loss.numpy()
+            for key in val_individual_losses:
+                val_loss[key] += val_individual_losses[key].numpy()
 
-#         num_val_batches = len(valid_dataloader)
-#         val_avg_loss = {key: val_loss[key] / num_val_batches for key in val_loss}
-#         val_total_loss.append(float(val_avg_loss['total']))
-#         val_adv_loss.append(float(val_avg_loss['adv']))
-#         val_perc_loss.append(float(val_avg_loss['perc']))
-#         val_grad_loss.append(float(val_avg_loss['grad']))
-#         val_second_grad_loss.append(float(val_avg_loss['second_grad']))
-#         val_struct_loss.append(float(val_avg_loss['struct']))
-#         val_aux_loss.append(float(val_avg_loss['aux']))
+        num_val_batches = len(valid_dataloader)
+        val_avg_loss = {key: val_loss[key] / num_val_batches for key in val_loss}
+        val_total_loss.append(float(val_avg_loss['total']))
+        val_adv_loss.append(float(val_avg_loss['adv']))
+        val_perc_loss.append(float(val_avg_loss['perc']))
+        val_grad_loss.append(float(val_avg_loss['grad']))
+        val_second_grad_loss.append(float(val_avg_loss['second_grad']))
+        val_struct_loss.append(float(val_avg_loss['struct']))
+        val_aux_loss.append(float(val_avg_loss['aux']))
 
-#         if (epoch + 1) % 5 == 0:
-#             current_weights = get_dynamic_weights(epoch, train_config['epochs'], initial_weights, final_weights)
+        if (epoch + 1) % 5 == 0:
+            current_weights = get_dynamic_weights(epoch, train_config['epochs'], initial_weights, final_weights)
 
-#         print(f"Epoch {epoch + 1}/{train_config['epochs']}, Train Total Loss: {train_total_loss[-1]}")
-#         print(f" Adv Loss: {train_adv_loss[-1]}, Perc Loss: {train_perc_loss[-1]}, Grad Loss: {train_grad_loss[-1]}, Second Grad Loss: {train_second_grad_loss[-1]}, Struct Loss: {train_struct_loss[-1]}, Aux Loss: {train_aux_loss[-1]}")
-#         print(f" Validation Total Loss: {val_total_loss[-1]}")
-#         print(f" Adv Loss: {val_adv_loss[-1]}, Perc Loss: {val_perc_loss[-1]}, Grad Loss: {val_grad_loss[-1]}, Second Grad Loss: {val_second_grad_loss[-1]}, Struct Loss: {val_struct_loss[-1]}, Aux Loss: {val_aux_loss[-1]}")
+        print(f"Epoch {epoch + 1}/{train_config['epochs']}, Train Total Loss: {train_total_loss[-1]}")
+        print(f" Adv Loss: {train_adv_loss[-1]}, Perc Loss: {train_perc_loss[-1]}, Grad Loss: {train_grad_loss[-1]}, Second Grad Loss: {train_second_grad_loss[-1]}, Struct Loss: {train_struct_loss[-1]}, Aux Loss: {train_aux_loss[-1]}")
+        print(f" Validation Total Loss: {val_total_loss[-1]}")
+        print(f" Adv Loss: {val_adv_loss[-1]}, Perc Loss: {val_perc_loss[-1]}, Grad Loss: {val_grad_loss[-1]}, Second Grad Loss: {val_second_grad_loss[-1]}, Struct Loss: {val_struct_loss[-1]}, Aux Loss: {val_aux_loss[-1]}")
         
-#         for i in range(gathered_generated_images.shape[0]):
-#             generated_image_np = (gathered_generated_images[i].numpy() * 255).astype(np.uint8)
-#             generated_image_bgr = cv2.cvtColor(generated_image_np, cv2.COLOR_RGB2BGR)
-#             if not os.path.exists(train_config['save_path']): os.makedirs(train_config['save_path'])
-#             cv2.imwrite(os.path.join(train_config['save_path'], f'epoch_{epoch}_step_{step}_replica_{i}.jpg'), generated_image_bgr)
+        for i in range(gathered_generated_images.shape[0]):
+            generated_image_np = (gathered_generated_images[i].numpy() * 255).astype(np.uint8)
+            generated_image_bgr = cv2.cvtColor(generated_image_np, cv2.COLOR_RGB2BGR)
+            if not os.path.exists(train_config['save_path']): os.makedirs(train_config['save_path'])
+            cv2.imwrite(os.path.join(train_config['save_path'], f'epoch_{epoch}_step_{step}_replica_{i}.jpg'), generated_image_bgr)
         
-#         save_losses_to_csv(epoch, train_total_loss, val_total_loss, train_adv_loss, val_adv_loss, train_perc_loss, val_perc_loss, train_grad_loss, val_grad_loss, train_second_grad_loss, val_second_grad_loss, train_struct_loss, val_struct_loss, train_aux_loss, val_aux_loss, train_config["log_path"])
+        save_losses_to_csv(epoch, train_total_loss, val_total_loss, train_adv_loss, val_adv_loss, train_perc_loss, val_perc_loss, train_grad_loss, val_grad_loss, train_second_grad_loss, val_second_grad_loss, train_struct_loss, val_struct_loss, train_aux_loss, val_aux_loss, train_config["log_path"])
     
-#     print("Training completed successfully!")
-#     for loss_name in ['total', 'adv', 'perc', 'grad', 'second_grad', 'struct', 'aux']:
-#         save_individual_losses(globals()[f"train_{loss_name}_loss"], globals()[f"val_{loss_name}_loss"], loss_name, train_config['log_path'])
+    print("Training completed successfully!")
+    for loss_name in ['total', 'adv', 'perc', 'grad', 'second_grad', 'struct', 'aux']:
+        save_individual_losses(globals()[f"train_{loss_name}_loss"], globals()[f"val_{loss_name}_loss"], loss_name, train_config['log_path'])
 
-
+'''
 ##
 # def train(train_config, model_config, loss_weights_config, architecture_module, strategy, train_dataloader, valid_dataloader):
 #     generator, discriminator, vgg, generator_optimizer, discriminator_optimizer = setup_model_and_optimizers(strategy, architecture_module, model_config, train_config)
@@ -656,3 +660,4 @@ def train(train_config, model_config, loss_weights_config, architecture_module, 
 #     for loss_name in ['total', 'adv', 'perc', 'grad', 'second_grad', 'struct', 'aux']:
 #         save_individual_losses(globals()[f"train_{loss_name}_loss"], globals()[f"val_{loss_name}_loss"], loss_name, train_config['log_path'])
 
+'''
