@@ -15,7 +15,7 @@ class PixelShuffle(layers.Layer):
         return tf.nn.depth_to_space(inputs, block_size=self.scale)
 
 # Define Residual Dense Block (RDB) with Mixed Convolution Types
-def residual_dense_block(x, filters, growth_rate=32, layers_in_block=4):
+def residual_dense_block(x, filters, growth_rate=4, layers_in_block=4):
     concat_features = [x]
     for _ in range(layers_in_block):
         x = layers.Conv2D(growth_rate, (3, 3), padding='same')(x)  # Standard convolution
@@ -36,7 +36,7 @@ def residual_dense_block(x, filters, growth_rate=32, layers_in_block=4):
     return x
 
 # Define Residual-in-Residual Dense Block (RRDB)
-def rrdb(x, filters, growth_rate=32, res_block=4):
+def rrdb(x, filters, growth_rate=4, res_block=4):
     res = layers.Conv2D(filters, (3, 3), padding='same')(x)
     for _ in range(res_block):
         x = residual_dense_block(x, filters, growth_rate)
@@ -190,13 +190,13 @@ def generator(input_shape=(192, 256, 3), feature_shape=(24, 32, 512)):
     
     # Original scale processing (scale1)
     scale1 = x
-    for i in range(2):
+    for i in range(3):
         scale1 = rrdb(scale1, 128)
         # print(f"Shape after RRDB {i+1}: {scale1.shape}")
 
     # Downscale by 2 (scale2)
     scale2 = layers.AveragePooling2D(pool_size=(2, 2))(x)
-    for i in range(2):
+    for i in range(3):
         scale2 = rrdb(scale2, 128)
         # print(f"Shape after RRDB {i+1} on scale2: {scale2.shape}")
     # Upscale by 2
@@ -205,7 +205,7 @@ def generator(input_shape=(192, 256, 3), feature_shape=(24, 32, 512)):
     
     # Upscale by 2 (scale4)
     scale4 = PixelShuffle(scale=2)(x)
-    for i in range(2):
+    for i in range(3):
         scale4 = rrdb(scale4, 128)
         # print(f"Shape after RRDB {i+1} on scale4: {scale4.shape}")
     # Downscale by 2
