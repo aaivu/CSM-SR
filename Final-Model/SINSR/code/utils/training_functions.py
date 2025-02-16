@@ -462,13 +462,20 @@ def train(train_config, model_config, loss_weights_config, architecture_module, 
 #     generator, discriminator, feature_extractors, generator_optimizer, discriminator_optimizer = setup_model_and_optimizers(strategy, architecture_module, model_config, train_config)
   
 ### Working best efficientnet ####
+from tensorflow.keras.callbacks import ModelCheckpoint # type: ignore
+
 def train(train_config, model_config, loss_weights_config, architecture_module, strategy, train_dataloader, valid_dataloader):
     generator, discriminator, efficientnet, vgg, generator_optimizer, discriminator_optimizer = setup_model_and_optimizers(strategy, architecture_module, model_config, train_config)
     
     initial_weights = loss_weights_config['initial_weights']
     final_weights = loss_weights_config['final_weights']
     current_weights = initial_weights.copy()
+    # Create the callback for saving the best model
+    checkpoint_path = os.path.join(train_config['model_save_path'], 'best_model.keras')
+    checkpoint = ModelCheckpoint(filepath=checkpoint_path, monitor='val_total_loss', save_best_only=True, mode='min', verbose=5)
+
     callbacks = get_callbacks(train_config)
+    callbacks.append(checkpoint)
 
     for callback in callbacks:
         callback.set_model(generator)
@@ -539,6 +546,9 @@ def train(train_config, model_config, loss_weights_config, architecture_module, 
         val_second_grad_loss.append(float(val_avg_loss['second_grad']))
         val_struct_loss.append(float(val_avg_loss['struct']))
         val_aux_loss.append(float(val_avg_loss['aux']))
+
+        # Update the ModelCheckpoint at the end of each epoch
+        checkpoint.on_epoch_end(epoch, logs={'val_total_loss': val_avg_loss['total']})
 
         if (epoch + 1) % 5 == 0:
             current_weights = get_dynamic_weights(epoch, train_config['epochs'], initial_weights, final_weights)
