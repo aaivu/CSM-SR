@@ -36,7 +36,7 @@ def residual_dense_block(x, filters, growth_rate=4, layers_in_block=4):
     return x
 
 # Define Residual-in-Residual Dense Block (RRDB)
-def rrdb(x, filters, growth_rate=4, res_block=4):
+def rrdb(x, filters, growth_rate=4, res_block=5):
     res = layers.Conv2D(filters, (3, 3), padding='same')(x)
     for _ in range(res_block):
         x = residual_dense_block(x, filters, growth_rate)
