@@ -1,3 +1,4 @@
+# Set TensorLayerX backend to TensorFlow
 import os
 os.environ['TL_BACKEND'] = 'tensorflow' # Just modify this line, easily switch to any framework! PyTorch will coming soon!
 # os.environ['TL_BACKEND'] = 'mindspore'
@@ -23,7 +24,7 @@ tlx.set_device('GPU')
 from image_quality_metrics import calculate_psnr, calculate_ssim, calculate_lpips
 import matplotlib.pyplot as plt
 
-
+# Set parameters
 batch_size = 16
 n_epoch_init = config.TRAIN.n_epoch_init
 n_epoch = config.TRAIN.n_epoch
@@ -33,6 +34,7 @@ tlx.files.exists_or_mkdir(save_dir)
 checkpoint_dir = "/home/oshadi/SISR-Final_Year_Project/envs/SISR-Project/State-of-art-models/SRGAN-master/models"
 tlx.files.exists_or_mkdir(checkpoint_dir)
 
+# Define data transformations
 hr_transform = Compose([
     RandomCrop(size=(384, 384)),
     RandomFlipHorizontal(),
@@ -43,6 +45,7 @@ lr_transform = Resize(size=(96, 96))
 
 train_hr_imgs = tlx.vision.load_images(path=config.TRAIN.hr_img_path, n_threads = 32)
 
+# Define dataset class
 class TrainData(Dataset):
 
     def __init__(self, hr_trans=hr_transform, lr_trans=lr_transform):
@@ -73,6 +76,7 @@ class TrainData(Dataset):
     def __len__(self):
         return len(self.train_hr_imgs)
 
+# Define loss functions and models
 class WithLoss_init(Module):
     def __init__(self, G_net, loss_fn):
         super(WithLoss_init, self).__init__()
@@ -129,7 +133,7 @@ VGG = vgg.VGG19(pretrained=True, end_with='pool4', mode='dynamic')
 G.init_build(tlx.nn.Input(shape=(8, 3, 96, 96)))     # Define above should be matched with this 
 D.init_build(tlx.nn.Input(shape=(8, 3, 384, 384)))
 
-
+# Training process
 def train():
     G.set_train()
     D.set_train()
