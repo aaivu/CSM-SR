@@ -107,26 +107,14 @@ To address this gap, the proposed approach integrates structural information usi
     <li><a href="talk_forum_profile_link">Oshadi Perera</a></li>
 </ul>
 
-<p align="center">
-    <img src="https://img.shields.io/badge/release-v1.0.0--Commercial-blue" alt="release"/>
-    <img src="https://img.shields.io/badge/License-Apache License--Commercial-blue" alt="License"/>
-</p>
-
-
-<h2 style="font-family: Arial, sans-serif; font-size: 20px; color: black;">More References</h2>
-<ol style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    <li>Reference</li>
-    <li>Link</li>
-    <li>Dataset 1 : <a href="https://b2share.eudat.eu/records/19cc2afd23e34b92b36a1dfd0113a89f">NFFA-EUROPE - SEM Dataset</a></li>
-</ol>
-
-<hr style="border: 1px solid black;">
-
-<h3 style="font-family: Arial, sans-serif; font-size: 18px; color: black;">License</h3>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">Apache License 2.0</p>
-
 <h3 style="font-family: Arial, sans-serif; font-size: 18px; color: black;">Code of Conduct</h3>
 <p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">Please read our <a href="https://github.com/aaivu/aaivu-introduction/blob/master/docs/code_of_conduct.md">code of conduct document here</a>.</p>
+
+<p align="center">
+    <img src="https://img.shields.io/badge/release-v1.0.0--Commercial-blue" alt="release"/>
+    <img src="https://img.shields.io/badge/License-Apache License 2.0-blue" alt="Apache License 2.0"/>
+</p>
+
 
 </body>
 </html>
