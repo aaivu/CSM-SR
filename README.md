@@ -1,81 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <h1>Structure-Informed Super Resolution Technique for Scientific Imaging</h1>
+    <h1 align="center">Structure-Informed Super Resolution Technique for Scientific Imaging</h1>
+    
 </head>
 <body>
-    <p><img src="https://img.shields.io/badge/-Project-blue" alt="Project"> <img src="https://img.shields.io/badge/-Research-yellowgreen" alt="Research">      </p>
-<h2>Project Lead</h2>
-    <ul>
-        <li><a href="talk_forum_profile_link">Dr. Uthayasanker Thayasivam</a></li>
-    </ul>
-<h2>Mentor(s)</h2>
-    <ul>
-        <li><a href="talk_forum_profile_link">Brinthan, Vithurabhiman</a></li>
-    </ul>
+    
+<div align="center">
+    <h2>
+        <a href="https://github.com/aaivu/Structure-informed-super-resolution-/tree/master/Final-Model/SINSR">
+            <img src="https://img.shields.io/badge/Project-GitHub-coral" alt="Project">
+        </a>
+        <a href="https://drive.google.com/file/d/1nZgB0Zq6sPeGh3h5duNINIqRsGrdK2JM/view?usp=sharing">
+            <img src="https://img.shields.io/badge/Survey Paper-Read%20Now-steelblue" alt="Survey Paper">
+        </a>
+        <a href="https://drive.google.com/file/d/1nAWR9VU8oc6-gqQ53amh0t0gOMbJzQhY/view?usp=sharing">
+            <img src="https://img.shields.io/badge/Research%20Paper-Read%20Now-teal" alt="Research Paper">
+        </a>
+        <a href="https://github.com/aaivu/Structure-informed-super-resolution-/tree/master/State-of-art-models">
+            <img src="https://img.shields.io/badge/Experiments-State of Art Models-slategray" alt="State of Art Models">
+        </a>
+        <a href="talk_forum_link">
+            <img src="https://img.shields.io/badge/Talk Forum-Join us-lightyellow" alt="Talk Forum">
+        </a>
+    </h2>
+</div>
 
-<h2>Contributor(s)</h2>
-    <ul>
-        <li><a href="talk_forum_profile_link">Randika Prabashwara</a></li>
-        <li><a href="talk_forum_profile_link">Gayani Wickramarathna</a></li>
-        <li><a href="talk_forum_profile_link">Oshadi Perera</a></li>
-    </ul>
 
-<h2>Useful Links</h2>
-<a href="https://github.com/aaivu/Structure-informed-super-resolution-/tree/master/Final-Model/SINSR">
-    <img src="https://img.shields.io/badge/-GitHub-blue" alt="GitHub">
-</a>
-<a href="talk_forum_link">
-    <img src="https://img.shields.io/badge/-Talk Forum-yellowgreen" alt="Talk Forum">
-</a>
+<p>
+The rapid advancements in scientific imaging, particularly in fields such as material science, medical imaging, and nanotechnology, have underscored the need for highly detailed images at the micro and nano scales. Traditional microscopic imaging techniques often face significant resolution limitations, leading to increased costs and insufficient detail for precise scientific analysis. Image Super-Resolution (SR) techniques have emerged as a promising solution, offering the ability to recover high-resolution images from low-resolution counterparts through advanced image processing methods. While deep learning-based SR models like SRGAN, ESRGAN, and SwinIR have demonstrated state-of-the-art performance in enhancing image resolution, they often fail to preserve the structural integrity crucial for accurate scientific analysis.
 
-<h1 style="font-family: 'Times New Roman', Times, serif; font-size: 30px; color: blue;">
-    <b>Summary</b>
-</h1>
-
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    Microscopic imaging is essential for examining materials at micro and nano scales, yet it often faces challenges with resolution limitations, leading to longer acquisition times and increased costs for high-resolution images. Traditional super-resolution techniques like SRGAN, ESRGAN, and SwinIR enhance low-resolution images but frequently fail to maintain the structural integrity of the image components, which is crucial for accurate quantitative analysis. This project addresses this limitation by integrating structural information into super-resolution techniques, leveraging conditional generative adversarial networks (GANs) and optimizing them with a structure-informed convex loss function.
-</p>
-
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    The project involves multiple phases, starting with the collection and preprocessing of an extensive set of scanning electron microscopy (SEM) images. It then evaluates existing state-of-the-art super-resolution models to establish baseline performance metrics. The core of the research is the development of the SINSR model, which features an advanced generator and discriminator architecture, coupled with a multi-component loss function designed to preserve structural integrity. The model is trained and evaluated on the collected dataset, and further architectural advancements, such as a parallel Gradient Branch, are explored to enhance performance. The final SINSR model is rigorously evaluated to ensure it significantly improves the quality of super-resolution images, facilitating more accurate scientific analyses.
-</p>
-
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    Through this innovative approach, the project aims to revolutionize microscopic imaging by producing high-resolution images that retain structural integrity, thus enabling more reliable and realistic downstream scientific analyses. The integration of conditional GANs and a structure-informed loss function represents a significant advancement in super-resolution techniques, paving the way for enhanced accuracy in various scientific and research applications.
-</p>
-
-<h1 style="font-family: 'Times New Roman', Times, serif; font-size: 30px; color: blue;">
-    <b>Description</b>
-</h1>
-
-<h2 style="font-family: Arial, sans-serif; font-size: 20px; color: black;">Overview</h2>
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    Microscopic imaging is indispensable for investigating the structural and functional properties of materials at micro and nano scales. Despite its critical role, the process often suffers from resolution limitations, resulting in prolonged acquisition times and higher costs for obtaining high-resolution (HR) images. Super-resolution techniques, such as SRGAN, ESRGAN, and SwinIR, have been developed to address these challenges by enhancing low-resolution (LR) images. However, these methods often overlook the preservation of structural integrity in image components, which is crucial for downstream quantitative analyses.
-</p>
-
-<p style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-    This research project proposes a novel approach to integrate structural information into super-resolution techniques. By leveraging the capabilities of conditional generative adversarial networks (GANs) and optimizing them with a structure-informed convex loss function, the objective is to enhance the quality of super-resolution images. This enhancement aims to facilitate more accurate and realistic downstream scientific analyses.
+To address this gap, the proposed approach integrates structural information using advanced conditional generative adversarial networks (cGANs) and a structure-informed convex loss function. This methodology is designed to improve both the visual quality and structural accuracy of super-resolved images. The research seeks to develop a super-resolution technique that not only enhances image quality but also preserves the structural integrity of image components, thereby facilitating more precise and realistic scientific analyses in fields such as material science and medical imaging.
 </p>
 
 <h2>Project Phases</h2>
+<p><b>1. Data Collection and Preprocessing:</b><br>
+<b>Objective:</b> Collect and preprocess a comprehensive set of scanning electron microscopy (SEM) images, including the SEM dataset, Hierarchical dataset, Majority dataset, and 100% dataset.<br>
+<div align="center">
+    <img src="https://drive.google.com/uc?export=view&id=1heAUwJ3MAc2a22MJ7OkQJCCY67hL-VoX" alt="Electron Microscope Images">
+    <p>Figure: Electron microscope images showcasing various textures, patterns, and structures at microscopic scales.</p>
+</div>
+<b>Outcome:</b> A clean and well-annotated dataset ready for training and evaluation purposes.<br>
 
-<h3>Phase 1: Data Collection and Preprocessing</h3>
-<p><b>Objective:</b> Collect and preprocess a comprehensive set of scanning electron microscopy (SEM) images, including the SEM dataset, Hierarchical dataset, Majority dataset, and 100% dataset.</p>
-<p><b>Outcome:</b> A clean and well-annotated dataset ready for training and evaluation purposes.</p>
+<b>2. Evaluation of State-of-the-Art Models:</b><br>
+<b>Objective:</b> Conduct experiments using existing super-resolution models (SRGAN, ESRGAN, VDSR, SPSR, dSRVAE) on the collected datasets to establish baseline performance metrics.<br>
+<div align="center">
+    <img src="https://drive.google.com/file/d/1rF5OxfhXHmIfK_90-XEwkIv-dY15scbd/view?usp=sharing" alt="Results of Comparison With Different State-of-art Methods on the SEM-Dataset">
+</div>
+<b>Outcome:</b> Experimental results providing insights into the strengths and limitations of current models.<br>
 
-<h3>Phase 2: Evaluation of State-of-the-Art Models</h3>
-<p><b>Objective:</b> Conduct experiments using existing super-resolution models (SRGAN, ESRGAN, VDSR, SPSR, dSRVAE) on the collected datasets to establish baseline performance metrics.</p>
-<p><b>Outcome:</b> Experimental results providing insights into the strengths and limitations of current models.</p>
+<b>Phase 3.1: Development of the SINSR Model:</b><br>
+<b>1. Model Architecture Design</b><br>
+<b>Generator Design:</b> The generator model comprises advanced super-resolution residual blocks and attention blocks, coupled with multi-scale processing to enhance feature extraction capabilities.<br>
+<b>Discriminator Design:</b> The discriminator employs a combination of residual blocks and PatchGAN-style convolutions to effectively differentiate between real and generated images.<br>
 
-<h3>Phase 3.1: Development of the SINSR Model</h3>
-
-<h4>1. Model Architecture Design</h4>
-<p><b>Generator Design:</b> The generator model comprises advanced super-resolution residual blocks and attention blocks, coupled with multi-scale processing to enhance feature extraction capabilities.</p>
-<p><b>Discriminator Design:</b> The discriminator employs a combination of residual blocks and PatchGAN-style convolutions to effectively differentiate between real and generated images.</p>
-
-<h4>2. Integration of Structure-Informed Loss Function</h4>
-<p><b>Loss Components:</b></p>
+<b>2. Integration of Structure-Informed Loss Function</b><br>
+<b>Loss Components:</b>
 <ul>
     <li><b>Adversarial Loss:</b> Utilizes binary cross-entropy to train the GAN, ensuring realistic image generation.</li>
     <li><b>Perceptual Loss:</b> Employs a pre-trained VGG19 model to compare high-level features between the ground truth and generated images.</li>
@@ -84,27 +64,54 @@
     <li><b>Total Variation Loss:</b> Encourages spatial smoothness in the generated images.</li>
     <li><b>Structural Similarity Loss:</b> Measures the structural similarity between ground truth and generated images.</li>
 </ul>
-<p><b>Total Loss Calculation:</b> Combines all the above loss components into a single, comprehensive loss function for training.</p>
+<b>Total Loss Calculation:</b> Combines all the above loss components into a single, comprehensive loss function for training.<br>
 
-<h3>Phase 4: Model Training and Evaluation</h3>
-<p><b>Objective:</b> Train the SINSR model using the structure-informed loss function and evaluate its performance on the collected dataset.</p>
-<p><b>Outcome:</b> Detailed performance metrics, comparisons with baseline models, and qualitative analyses of the generated high-resolution images.</p>
+<b>4:. Model Training and Evaluation</b><br>
+<b>Objective:</b> Train the SINSR model using the structure-informed loss function and evaluate its performance on the collected dataset.<br>
+<b>Outcome:</b> Detailed performance metrics, comparisons with baseline models, and qualitative analyses of the generated high-resolution images.<br>
 
-<h3>Phase 5: Advanced Model Development</h3>
-<p><b>Objective:</b> Integrate additional architectural advancements, such as incorporating a Gradient Branch alongside the super-resolution branch, operating in parallel.</p>
-<p><b>Outcome:</b> An enhanced SINSR model architecture that significantly improves performance in maintaining structural integrity in high-resolution images.</p>
+<p><b>Phase 5: Advanced Model Development<b><br>
+<b>Objective:</b> Integrate additional architectural advancements, such as incorporating a Gradient Branch alongside the super-resolution branch, operating in parallel.<br>
+<b>Outcome:</b> An enhanced SINSR model architecture that significantly improves performance in maintaining structural integrity in high-resolution images.<br>
 
-<h3>Phase 6: Final Evaluation and Analysis</h3>
-<p><b>Objective:</b> Conduct a comprehensive evaluation of the final SINSR model, incorporating both quantitative metrics and qualitative analyses.</p>
+<b>Phase 6: Final Evaluation and Analysis<b><br>
+<b>Objective:</b> Conduct a comprehensive evaluation of the final SINSR model, incorporating both quantitative metrics and qualitative analyses.<br>
 
-<h4>1. Quantitative Metrics</h4>
+<b>1. Quantitative Metrics<b>
 <ul>
     <li>PSNR</li>
     <li>SSIM</li>
     <li>LPIPS</li>
 </ul>
+<b>Outcome:</b> A fully developed and evaluated SINSR model, ready for application in downstream scientific analyses.
+</p>
 
-<p><b>Outcome:</b> A fully developed and evaluated SINSR model, ready for application in downstream scientific analyses.</p>
+
+
+
+
+<h3>Project Lead</h2>
+<ul>
+    <li><a href="talk_forum_profile_link">Dr. Uthayasanker Thayasivam</a></li>
+</ul>
+
+<h4>Mentor(s)</h2>
+<ul>
+    <li><a href="talk_forum_profile_link">Brinthan, Vithurabhiman</a></li>
+</ul>
+
+<h4>Contributor(s)</h2>
+<ul>
+    <li><a href="talk_forum_profile_link">Randika Prabashwara</a></li>
+    <li><a href="talk_forum_profile_link">Gayani Wickramarathna</a></li>
+    <li><a href="talk_forum_profile_link">Oshadi Perera</a></li>
+</ul>
+
+<p align="center">
+    <img src="https://img.shields.io/badge/release-v1.0.0--Commercial-blue" alt="release"/>
+    <img src="https://img.shields.io/badge/License-Apache License--Commercial-blue" alt="License"/>
+</p>
+
 
 <h2 style="font-family: Arial, sans-serif; font-size: 20px; color: black;">More References</h2>
 <ol style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
