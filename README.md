@@ -103,7 +103,7 @@ To address this gap, the proposed approach integrates structural information usi
 <h4>Contributor(s)</h2>
 <ul>
     <li><a href="talk_forum_profile_link">Randika Prabashwara</a></li>
-    <li><a href="talk_forum_profile_link">Gayani Wickramarathna</a></li>
+    <li><a href=https://github.com/Gayani2001>Gayani Wickramarathna</a></li>
     <li><a href="talk_forum_profile_link">Oshadi Perera</a></li>
 </ul>
 
