@@ -27,29 +27,30 @@
 </div>
 
 
-<p>
-The rapid advancements in scientific imaging, particularly in fields such as material science, medical imaging, and nanotechnology, have underscored the need for highly detailed images at the micro and nano scales. Traditional microscopic imaging techniques often face significant resolution limitations, leading to increased costs and insufficient detail for precise scientific analysis. Image Super-Resolution (SR) techniques have emerged as a promising solution, offering the ability to recover high-resolution images from low-resolution counterparts through advanced image processing methods. While deep learning-based SR models like SRGAN, ESRGAN, and SwinIR have demonstrated state-of-the-art performance in enhancing image resolution, they often fail to preserve the structural integrity crucial for accurate scientific analysis.
+<p align="justify">
+The rapid advancements in scientific imaging, particularly in fields such as material science, medical imaging, and nanotechnology, have underscored the need for highly detailed images at the micro and nano scales. Traditional microscopic imaging techniques often face significant resolution limitations, leading to increased costs and insufficient detail for precise scientific analysis. Image Super-Resolution (SR) techniques have emerged as a promising solution, offering the ability to recover high-resolution images from low-resolution counterparts through advanced image processing methods. While deep learning-based SR models like <b>VDSR</b>--<a href="https://arxiv.org/abs/1511.04587">Very Deep Super-Resolution</a>--, <b>EDSR</b>--<a href="https://arxiv.org/abs/1707.02921">Enhanced Deep Residual Networks for Single Image Super-Resolution</a>--, GAN based <b>SRGAN</b>--<a href="https://arxiv.org/abs/1609.04802">Super-Resolution Generative Adversarial Network</a>--, <b>ESRGAN</b>--<a href="https://arxiv.org/abs/1809.00219">Enhanced Super-Resolution Generative Adversarial Networks</a>--, <b>SPSR</b>--<a href="https://arxiv.org/abs/2109.12530">Structure-Preserving Super Resolution with Gradient Guidance</a>--, variational autoencoder based <b>DSR-VAE</b>--<a href="https://arxiv.org/abs/2203.09445">Deep Super-Resolution Variational Autoencoder</a>--</b> and transformer based <b>SwinIR</b>--<a href="https://arxiv.org/abs/2108.10257">Swin Transformer for Image Restoration</a>-- have demonstrated state-of-the-art performance in enhancing image resolution, they often fail to preserve the structural integrity crucial for accurate scientific analysis.
 
 To address this gap, the proposed approach integrates structural information using advanced conditional generative adversarial networks (cGANs) and a structure-informed convex loss function. This methodology is designed to improve both the visual quality and structural accuracy of super-resolved images. The research seeks to develop a super-resolution technique that not only enhances image quality but also preserves the structural integrity of image components, thereby facilitating more precise and realistic scientific analyses in fields such as material science and medical imaging.
 </p>
 
 <h2>Project Phases</h2>
-<p><b>1. Data Collection and Preprocessing:</b><br>
+<p align="justify">
+<b>1. Data Collection and Preprocessing:</b><br>
 <b>Objective:</b> Collect and preprocess a comprehensive set of scanning electron microscopy (SEM) images, including the SEM dataset, Hierarchical dataset, Majority dataset, and 100% dataset.<br>
 <div align="center">
     <img src=https://drive.google.com/uc?export=view&id=1heAUwJ3MAc2a22MJ7OkQJCCY67hL-VoX alt="Electron Microscope Images">
     <p>Figure: Electron microscope images showcasing various textures, patterns, and structures at microscopic scales.</p>
 </div>
-<b>Outcome:</b> A clean and well-annotated dataset ready for training and evaluation purposes.<br>
+<b>Outcome:</b> A clean and well-annotated dataset ready for training and evaluation purposes.<br><br>
 
 <b>2. Evaluation of State-of-the-Art Models:</b><br>
-<b>Objective:</b> Conduct experiments using existing super-resolution models (SRGAN, ESRGAN, VDSR, SPSR, dSRVAE) on the collected datasets to establish baseline performance metrics.<br>
+<b>Objective:</b> Conduct experiments using existing super-resolution models (SRGAN, ESRGAN, VDSR, SPSR, dSRVAE, SwinIR) on the collected datasets to establish baseline performance metrics.<br>
 <div align="center">
     <img src="https://drive.google.com/file/d/1rF5OxfhXHmIfK_90-XEwkIv-dY15scbd/view?usp=sharing" alt="Results of Comparison With Different State-of-art Methods on the SEM-Dataset">
 </div>
-<b>Outcome:</b> Experimental results providing insights into the strengths and limitations of current models.<br>
+<b>Outcome:</b> Experimental results providing insights into the strengths and limitations of current models.<br><br>
 
-<b>Phase 3.1: Development of the SINSR Model:</b><br>
+<b>3.1: Development of the Advance-Conditional Multi-Scale GAN Model:</b><br>
 <b>1. Model Architecture Design</b><br>
 <b>Generator Design:</b> The generator model comprises advanced super-resolution residual blocks and attention blocks, coupled with multi-scale processing to enhance feature extraction capabilities.<br>
 <b>Discriminator Design:</b> The discriminator employs a combination of residual blocks and PatchGAN-style convolutions to effectively differentiate between real and generated images.<br>
@@ -64,17 +65,17 @@ To address this gap, the proposed approach integrates structural information usi
     <li><b>Total Variation Loss:</b> Encourages spatial smoothness in the generated images.</li>
     <li><b>Structural Similarity Loss:</b> Measures the structural similarity between ground truth and generated images.</li>
 </ul>
-<b>Total Loss Calculation:</b> Combines all the above loss components into a single, comprehensive loss function for training.<br>
+<b>Total Loss Calculation:</b> Combines all the above loss components into a single, comprehensive loss function for training.<br><br>
 
-<b>4:. Model Training and Evaluation</b><br>
+<b>4. Model Training and Evaluation</b><br>
 <b>Objective:</b> Train the SINSR model using the structure-informed loss function and evaluate its performance on the collected dataset.<br>
-<b>Outcome:</b> Detailed performance metrics, comparisons with baseline models, and qualitative analyses of the generated high-resolution images.<br>
+<b>Outcome:</b> Detailed performance metrics, comparisons with baseline models, and qualitative analyses of the generated high-resolution images.<br><br>
 
-<p><b>Phase 5: Advanced Model Development<b><br>
+<b>5. Advanced Model Development<b><br>
 <b>Objective:</b> Integrate additional architectural advancements, such as incorporating a Gradient Branch alongside the super-resolution branch, operating in parallel.<br>
-<b>Outcome:</b> An enhanced SINSR model architecture that significantly improves performance in maintaining structural integrity in high-resolution images.<br>
+<b>Outcome:</b> An enhanced SINSR model architecture that significantly improves performance in maintaining structural integrity in high-resolution images.<br><br>
 
-<b>Phase 6: Final Evaluation and Analysis<b><br>
+<b>6. Final Evaluation and Analysis<b><br>
 <b>Objective:</b> Conduct a comprehensive evaluation of the final SINSR model, incorporating both quantitative metrics and qualitative analyses.<br>
 
 <b>1. Quantitative Metrics<b>
