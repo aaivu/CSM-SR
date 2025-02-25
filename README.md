@@ -89,7 +89,7 @@ To address this gap, the proposed approach integrates structural information usi
 
 
 
-
+<!--
 <h3>Project Lead</h3>
 <ul>
     <li>
@@ -143,6 +143,45 @@ To address this gap, the proposed approach integrates structural information usi
         </a>
     </li>
 </ul>
+-->
+<table>
+    <tr>
+        <th>🎓 Role</th>
+        <th>👲 Name</th>
+        <th>🔗 GitHub</th>
+        <th>🔗 LinkedIn</th>
+    </tr>
+    <tr>
+        <td>Project Lead</td>
+        <td>Dr. Uthayasanker Thayasivam</td>
+        <td><a href="https://github.com/github_profile_link"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="80" height="20"/></a></td>
+        <td><a href="https://www.linkedin.com/in/rtuthaya/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/></a></td>
+    </tr>
+    <tr>
+        <td>Mentor</td>
+        <td>Brinthan, Vithurabhiman</td>
+        <td><a href="https://github.com/github_profile_link"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="80" height="20"/></a></td>
+        <td><a href="https://linkedin.com/linkedin_profile_link"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/></a></td>
+    </tr>
+    <tr>
+        <td>Contributor</td>
+        <td>Randika Prabashwara</td>
+        <td><a href="https://github.com/randikapra"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="80" height="20"/></a></td>
+        <td><a href="https://www.linkedin.com/in/randika-prabashwara-739bba237/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/></a></td>
+    </tr>
+    <tr>
+        <td>Contributor</td>
+        <td>Gayani Wickramarathna</a></td>
+        <td><a href="https://github.com/Gayani2001"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="80" height="20"/></a></td>
+        <td><a href="https://www.linkedin.com/in/gwickramarathna/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/></a></td>
+    </tr>
+    <tr>
+        <td>Contributor</td>
+        <td>Oshadi Perera</td>
+        <td><a href="https://github.com/Oshadi20"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="80" height="20"/></a></td>
+        <td><a href="https://www.linkedin.com/in/gwickramarathna/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/></a></td>
+    </tr>
+</table>
 
 <p align="center">
     <a href="https://github.com/aaivu/aaivu-introduction/blob/master/docs/code_of_conduct.md">
