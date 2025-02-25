@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+![image](https://github.com/user-attachments/assets/a89dde75-83de-40a7-a9c3-2551a2afdc33)<!DOCTYPE html>
 <html>
 <head>
     <h1 align="center">Structure-Informed Super Resolution Technique for Scientific Imaging</h1>
@@ -90,22 +90,58 @@ To address this gap, the proposed approach integrates structural information usi
 
 
 
-
-<h3>Project Lead</h2>
+<h3>Project Lead</h3>
 <ul>
-    <li><a href="talk_forum_profile_link">Dr. Uthayasanker Thayasivam</a></li>
+    <li>
+        Dr. Uthayasanker Thayasivam
+        <a href="https://github.com/github_profile_link">
+            <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="80" height="20"/>
+        </a>
+        <a href="https://linkedin.com/linkedin_profile_link">
+            <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/>
+        </a>
+    </li>
 </ul>
 
-<h4>Mentor(s)</h2>
+<h4>Mentor(s)</h4>
 <ul>
-    <li><a href="talk_forum_profile_link">Brinthan, Vithurabhiman</a></li>
+    <li>
+        Brinthan, Vithurabhiman
+        <a href="https://github.com/github_profile_link">
+            <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="80" height="20"/>
+        </a>
+        <a href="https://linkedin.com/linkedin_profile_link">
+            <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/>
+        </a>
+    </li>
 </ul>
 
-<h4>Contributor(s)</h2>
+<h4>Contributor(s)</h4>
 <ul>
-    <li><a href="talk_forum_profile_link">Randika Prabashwara</a></li>
-    <li><a href=https://github.com/Gayani2001>Gayani Wickramarathna</a></li>
-    <li><a href="talk_forum_profile_link">Oshadi Perera</a></li>
+    <li>
+        Randika Prabashwara
+        <a href="https://github.com/github_profile_link">
+            <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="80" height="20"/>
+        </a>
+        <a href="https://linkedin.com/linkedin_profile_link">
+            <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/>
+        </a>
+    </li>
+    <li>
+        <a href="https://github.com/Gayani2001">Gayani Wickramarathna</a>
+        <a href="https://linkedin.com/linkedin_profile_link">
+            <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/>
+        </a>
+    </li>
+    <li>
+        Oshadi Perera
+        <a href="https://github.com/github_profile_link">
+            <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="80" height="20"/>
+        </a>
+        <a href="https://linkedin.com/linkedin_profile_link">
+            <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/>
+        </a>
+    </li>
 </ul>
 
 <p align="center">
