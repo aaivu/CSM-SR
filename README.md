@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/a89dde75-83de-40a7-a9c3-2551a2afdc33)<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <h1 align="center">Structure-Informed Super Resolution Technique for Scientific Imaging</h1>
