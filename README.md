@@ -188,7 +188,7 @@ To address this gap, the proposed approach integrates structural information usi
         <img src="https://img.shields.io/badge/Code of Conduct-Please Read-blue" alt="release"/>
     </a>
     <img src="https://img.shields.io/badge/release-v1.0.0-blue" alt="release"/>
-    <img src="https://img.shields.io/badge/License-Apache License 2.0-blue" alt="Apache License 2.0"/>
+    <a href="https://github.com/aaivu/Structure-informed-super-resolution-/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-Apache License 2.0-blue" alt="Apache License 2.0"/></a>
 </p>
 
 
