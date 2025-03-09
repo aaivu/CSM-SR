@@ -34,97 +34,6 @@ The rapid advancements in scientific imaging, particularly in fields such as mat
 To address this gap, the proposed approach integrates structural information using advanced conditional generative adversarial networks (cGANs) and a structure-informed convex loss function. This methodology is designed to improve both the visual quality and structural accuracy of super-resolved images. The research seeks to develop a super-resolution technique that not only enhances image quality but also preserves the structural integrity of image components, thereby facilitating more precise and realistic scientific analyses in fields such as material science and medical imaging.
 </p>
 
-<h2>Project Structure</h2>
-<pre>
-<!-- Root folder for the CSM-SR project -->
-|-- CSM-SR/
-|   |-- README.md                        <!-- Project overview, instructions, and usage -->
-|   |-- LICENSE                   <!-- Open-source or proprietary license details -->
-|   |-- requirements.txt          <!-- Python dependencies -->
-|   |-- setup.py                  <!-- Optional: Package setup script (if needed) -->
-|   |-- configs/<!-- Configuration files for various components of the project -->
-|   |   |-- dataset_config.json   <!-- Dataset configuration -->
-|   |   |-- loss_function_config.json<!-- Configuration for loss functions -->
-|   |   |-- model_architecture_config.json<!-- Model architecture configuration -->
-|   |   |-- training_config.json<!-- Training setup configuration -->
-|   |-- csm_sr_model.py       <!-- Primary model (formerly architecture_8.py) -->
-|   |   |-- archived_architectures/<!-- Archived unused model architectures -->
-|   |-- experiment/<!-- Generated outputs and logs -->
-|   |   |-- generated_images/     <!-- Organized results (e.g., SR output images) -->
-|   |   |-- model_checkpoints/    <!-- Optional: Saved model checkpoints -->
-|   |   |-- logs/                 <!-- Training logs or output files -->
-|   |-- loss_functions/<!-- Custom loss functions -->
-|   |   |-- content_loss.py<!-- Mean squared error loss function -->
-|   |   |-- structural_loss.py<!-- Custom defined loss function -->
-|   |   |-- texture_loss.py
-|   |-- evaluation/<!-- Evaluation scripts and utilities -->
-|   |   |-- metrics.py            <!-- Evaluation metrics implementation -->
-|   |   |-- results_visualizer.py <!-- Visualizations for evaluation (optional) -->
-|   |-- utilities/
-|   |   |-- callbacks.py          <!-- Training callbacks (e.g., early stopping) -->
-|   |   |-- config_parser.py      <!-- Formerly config_loader.py -->
-|   |   |-- data_preprocessor.py  <!-- Formerly data_loader.py -->
-|   |   |-- lmdb_data_loader.py   <!-- Data loader for LMDB format -->
-|   |-- setup.py 
-|   |-- tests.py 
-|   |-- train.py         <!-- Unit tests for key functionalities -->
-</pre>
-<h2>Installation</h2>
-<ol>
-<li>Clone the repository:</li>
-<pre>
-<code>
-git clone <repository_url>
-cd super-resolution
-</code>
-</pre>
-<li>Create a virtual environment:</li>
-<pre>
-<code>
-python -m venv myenv
-source myenv/bin/activate  # On Windows use `myenv\Scripts\activate`
-</code>
-</pre>
-<li>Install the dependencies:</li>
-<pre>
-<code>
-pip install -r requirements.txt
-</code>
-</pre>
-</ol>
-
-<h2>Usage</h2>
-<ol>
-<li>Prepare your datasets: Ensure your datasets are placed in the paths specified in <code>train.json</code>.</li>
-<li>Modify configurations: Adjust <code>model_config.json</code>, <code>train.json</code>, and <code>loss_config.json</code> as needed for your setup.</li>
-<li>Run the training script:</li>
-<pre>
-<code>
-python train.py
-</code>
-</pre>
-</ol>
-
-<h2>Model Architectures</h2>
-<h3>Generator</h3>
-<p>The generator model leverages residual blocks, attention mechanisms, and upsampling layers to enhance low-resolution images.</p>
-
-<h3>Discriminator</h3>
-<p>The discriminator model uses a hybrid of convolutional layers and feature pyramid networks to distinguish between real and generated high-resolution images.</p>
-
-<h2>Monitoring and Evaluation</h2>
-<ol>
-<li>TensorBoard: TensorBoard is used for monitoring the training process. Logs are saved in the logs directory specified in <code>train.json</code>.
-<pre>
-<code>
-tensorboard --logdir=path/to/logs
-</code>
-</pre>
-</li>
-<li>Generated Images: Generated super-resolution images are saved in the path specified in <code>train.json</code> at each epoch.</li>
-</ol>
-
-
 <h2>Project Phases</h2>
 <p align="justify">
 <b>1. Data Collection and Preprocessing:</b><br>
@@ -139,7 +48,6 @@ tensorboard --logdir=path/to/logs
 <b>Objective:</b> Conduct experiments using existing super-resolution models (SRGAN, ESRGAN, VDSR, SPSR, dSRVAE, SwinIR) on the collected datasets to establish baseline performance metrics.<br>
 <div align="center">
     <img src="https://github.com/user-attachments/assets/fd30f563-7a54-4150-ad4c-ecfc790a076a" alt="Results of Comparison With Different State-of-art Methods on the SEM-Dataset">
-    
 </div>
 <b>Outcome:</b> Experimental results providing insights into the strengths and limitations of current models.<br><br>
 
