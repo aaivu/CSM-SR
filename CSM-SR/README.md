@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <h1 align="center">Structure-Informed Super Resolution Technique for Scientific Imaging</h1>
+    <h1 align="center">CSM-SR:Conditional Structure-Informed Multi-Scale GAN for Scientific Image Super-Resolution</h1>
     
 </head>
 <body>
