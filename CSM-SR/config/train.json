@@ -15,7 +15,7 @@
     "generator_model_path": "../models/pretrained_generator",
     "generator_save_path": "../models/generator",
     "encoder_save_path": "../models/encoder",
-    "save_path": "../experiment/train_gen/generated_images",
+    "save_path": "../experiment/train_generated_images",
     "log_path": "../experiment/logs",
     "model_save_path": "../models/generator",
     "vgg_input_shape": [
