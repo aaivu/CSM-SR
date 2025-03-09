@@ -29,6 +29,7 @@
 
 <p align="justify">
 The rapid advancements in scientific imaging, particularly in fields such as material science, medical imaging, and nanotechnology, have underscored the need for highly detailed images at the micro and nano scales. Traditional microscopic imaging techniques often face significant resolution limitations, leading to increased costs and insufficient detail for precise scientific analysis. Image Super-Resolution (SR) techniques have emerged as a promising solution, offering the ability to recover high-resolution images from low-resolution counterparts through advanced image processing methods. While deep learning-based SR models like <b>VDSR</b>--<a href="https://arxiv.org/abs/1511.04587">Very Deep Super-Resolution</a>--, <b>EDSR</b>--<a href="https://arxiv.org/abs/1707.02921">Enhanced Deep Residual Networks for Single Image Super-Resolution</a>--, GAN based <b>SRGAN</b>--<a href="https://arxiv.org/abs/1609.04802">Super-Resolution Generative Adversarial Network</a>--, <b>ESRGAN</b>--<a href="https://arxiv.org/abs/1809.00219">Enhanced Super-Resolution Generative Adversarial Networks</a>--, <b>SPSR</b>--<a href="https://arxiv.org/abs/2109.12530">Structure-Preserving Super Resolution with Gradient Guidance</a>--, variational autoencoder based <b>DSR-VAE</b>--<a href="https://arxiv.org/abs/2203.09445">Deep Super-Resolution Variational Autoencoder</a>--</b> and transformer based <b>SwinIR</b>--<a href="https://arxiv.org/abs/2108.10257">Swin Transformer for Image Restoration--</a>, <b>HMA-Net</b>--<a href="https://arxiv.org/pdf/2405.05001"HMANet: Hybrid Multi-Axis Aggregation Network for Image Super-Resolution--</a>, have demonstrated state-of-the-art performance in enhancing image resolution, they often fail to preserve the structural integrity crucial for accurate scientific analysis.
+![Comparative Visual Images of SISR Techniques on state of art models](https://github.com/user-attachments/assets/fd30f563-7a54-4150-ad4c-ecfc790a076a)
 
 To address this gap, the proposed approach integrates structural information using advanced conditional generative adversarial networks (cGANs) and a structure-informed convex loss function. This methodology is designed to improve both the visual quality and structural accuracy of super-resolved images. The research seeks to develop a super-resolution technique that not only enhances image quality but also preserves the structural integrity of image components, thereby facilitating more precise and realistic scientific analyses in fields such as material science and medical imaging.
 </p>
@@ -143,8 +144,13 @@ tensorboard --logdir=path/to/logs
 
 <b>3.1: Development of the Advance-Conditional Multi-Scale GAN Model:</b><br>
 <b>1. Model Architecture Design</b><br>
-<b>Generator Design:</b> The generator model comprises advanced super-resolution residual blocks and attention blocks, coupled with multi-scale processing to enhance feature extraction capabilities.<br>
+<b>Generator Design:</b> The generator model comprises advanced super-resolution residual blocks and attention blocks, coupled with multi-scale processing to enhance feature extraction capabilities.
+![The Generator Architecture of CSM-SR for image super-resolution](https://github.com/user-attachments/assets/61da11e1-b16b-4c4f-bbb0-93c65bbce398)
+![Feature Conditionning Encoder Network (FCEN)](https://github.com/user-attachments/assets/a7a2a398-9655-489e-a2b7-b405c3da0671)
+![Feature Processing Block](https://github.com/user-attachments/assets/ee0ccdfb-368b-4b57-8b9f-8c69296a5d8c)
+<br>
 <b>Discriminator Design:</b> The discriminator employs a combination of residual blocks and PatchGAN-style convolutions to effectively differentiate between real and generated images.<br>
+![The Discriminator Architecture of CSM-SR](https://github.com/user-attachments/assets/0325a699-ba52-4570-b762-9e0b4eb69e00)
 
 <b>2. Integration of Structure-Informed Loss Function</b><br>
 <b>Loss Components:</b>
