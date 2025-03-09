@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.custom-heading {
-    font-family: "Times New Roman", Times, serif;
-    font-size: 30px;
-    color: blue;
-}
-</style>
-</head>
-<body>
-
-<h1 class="custom-heading"><b>Structure-informed super resolution technique for scientific imaging</b></h1>
+<h1><b>CSM-SR: Conditional Structure-Informed Multi-Scale GAN for Scientific Image Super-Resolution</b></h1>
 
 <p>This project aims to develop a deep learning model for super-resolution image generation using a combination of convolutional neural networks (CNNs), residual blocks, attention mechanisms, and upsampling layers. The project leverages both TensorFlow and PyTorch for data management, model architecture, training, and evaluation.</p>
 
@@ -21,7 +11,7 @@
 |-- CSM-SR/
 |   |-- README.md                        <!-- Project overview, instructions, and usage -->
 |   |-- LICENSE                   <!-- Open-source or proprietary license details -->
-|   |-- requirements.txt          !-- Python dependencies -->
+|   |-- requirements.txt          <!-- Python dependencies -->
 |   |-- setup.py                  <!-- Optional: Package setup script (if needed) -->
 |   |-- configs/<!-- Configuration files for various components of the project -->
 |   |   |-- dataset_config.json   <!-- Dataset configuration -->
