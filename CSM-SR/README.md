@@ -138,7 +138,8 @@ tensorboard --logdir=path/to/logs
 <b>2. Evaluation of State-of-the-Art Models:</b><br>
 <b>Objective:</b> Conduct experiments using existing super-resolution models (SRGAN, ESRGAN, VDSR, SPSR, dSRVAE, SwinIR) on the collected datasets to establish baseline performance metrics.<br>
 <div align="center">
-    <img src="https://drive.google.com/file/d/1rF5OxfhXHmIfK_90-XEwkIv-dY15scbd/view?usp=sharing" alt="Results of Comparison With Different State-of-art Methods on the SEM-Dataset">
+    <img src="https://github.com/user-attachments/assets/fd30f563-7a54-4150-ad4c-ecfc790a076a" alt="Results of Comparison With Different State-of-art Methods on the SEM-Dataset">
+    
 </div>
 <b>Outcome:</b> Experimental results providing insights into the strengths and limitations of current models.<br><br>
 
