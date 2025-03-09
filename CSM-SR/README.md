@@ -34,7 +34,7 @@ The rapid advancements in scientific imaging, particularly in fields such as mat
 To address this gap, the proposed approach integrates structural information using advanced conditional generative adversarial networks (cGANs) and a structure-informed convex loss function. This methodology is designed to improve both the visual quality and structural accuracy of super-resolved images. The research seeks to develop a super-resolution technique that not only enhances image quality but also preserves the structural integrity of image components, thereby facilitating more precise and realistic scientific analyses in fields such as material science and medical imaging.
 </p>
 
-<h2>CSM-SR</h2>
+<h2>Project Structure</h2>
 <pre>
 <!-- Root folder for the CSM-SR project -->
 |-- CSM-SR/
