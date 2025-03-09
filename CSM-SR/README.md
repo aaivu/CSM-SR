@@ -130,7 +130,7 @@ tensorboard --logdir=path/to/logs
 <b>1. Data Collection and Preprocessing:</b><br>
 <b>Objective:</b> Collect and preprocess a comprehensive set of scanning electron microscopy (SEM) images, including the SEM dataset, Hierarchical dataset, Majority dataset, and 100% dataset.<br>
 <div align="center">
-    <img src=https://drive.google.com/uc?export=view&id=1heAUwJ3MAc2a22MJ7OkQJCCY67hL-VoX alt="Electron Microscope Images">
+    <img src=https://github.com/user-attachments/assets/91718064-fe3c-4658-93e3-f7bb0c4705a0 alt="Electron Microscope Images">
     <p>Figure: Electron microscope images showcasing various textures, patterns, and structures at microscopic scales.</p>
 </div>
 <b>Outcome:</b> A clean and well-annotated dataset ready for training and evaluation purposes.<br><br>
