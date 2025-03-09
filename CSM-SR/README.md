@@ -182,7 +182,14 @@ tensorboard --logdir=path/to/logs
     <li>SSIM</li>
     <li>LPIPS</li>
 </ul>
-<b>Outcome:</b> A fully developed and evaluated SINSR model, ready for application in downstream scientific analyses.
+<p> Quantitative comparison (average PSNR/SSIM/LPIPS) with state-of-the-artmethods for Scientific Image SR on the SEM Dataset.Best and second best performance are in red,and blue, colors, respectively.
+![Quantitative comparison (average PSNR/SSIM/LPIPS) with state-of-the-artmethods for Scientific Image SR on the SEM Dataset.Best and second best performance are in red,and blue, colors, respectively.](https://github.com/user-attachments/assets/a00f8279-584e-462f-a254-250e86bf0009)
+
+Comparison of super-resolution methods
+![Comparison of super-resolution methods](https://github.com/user-attachments/assets/50de47df-9fc0-4843-9db4-196626f015d9)
+</p>
+
+<b>Outcome:</b> A fully developed and evaluated CSM-SR model, ready for application in downstream scientific analyses.
 </p>
 
 
