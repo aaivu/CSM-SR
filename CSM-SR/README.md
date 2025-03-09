@@ -46,31 +46,27 @@ To address this gap, the proposed approach integrates structural information usi
 |   |   |-- loss_function_config.json<!-- Configuration for loss functions -->
 |   |   |-- model_architecture_config.json<!-- Model architecture configuration -->
 |   |   |-- training_config.json<!-- Training setup configuration -->
-|   |-- models/<!-- Folder for model files -->
-|   |   |-- csm_sr_model.py       <!-- Primary model (formerly architecture_8.py) -->
+|   |-- csm_sr_model.py       <!-- Primary model (formerly architecture_8.py) -->
 |   |   |-- archived_architectures/<!-- Archived unused model architectures -->
-|       |-- architecture_1.py<!-- Experimental architecture 1 -->
-|       |-- architecture_2.py<!-- Experimental architecture 2 -->
-|       |-- ...
-|       |-- architecture_7.py<!-- Experimental architecture 7 -->
-|   |-- outputs/<!-- Generated outputs and logs -->
+|   |-- experiment/<!-- Generated outputs and logs -->
 |   |   |-- generated_images/     <!-- Organized results (e.g., SR output images) -->
 |   |   |-- model_checkpoints/    <!-- Optional: Saved model checkpoints -->
 |   |   |-- logs/                 <!-- Training logs or output files -->
 |   |-- loss_functions/<!-- Custom loss functions -->
-|   |   |-- mse_loss.py<!-- Mean squared error loss function -->
-|   |   |-- custom_loss.py<!-- Custom defined loss function -->
+|   |   |-- content_loss.py<!-- Mean squared error loss function -->
+|   |   |-- structural_loss.py<!-- Custom defined loss function -->
+|   |   |-- texture_loss.py
 |   |-- evaluation/<!-- Evaluation scripts and utilities -->
 |   |   |-- metrics.py            <!-- Evaluation metrics implementation -->
 |   |   |-- results_visualizer.py <!-- Visualizations for evaluation (optional) -->
 |   |-- utilities/
-|   |   <!-- Utility scripts for various tasks -->
 |   |   |-- callbacks.py          <!-- Training callbacks (e.g., early stopping) -->
 |   |   |-- config_parser.py      <!-- Formerly config_loader.py -->
 |   |   |-- data_preprocessor.py  <!-- Formerly data_loader.py -->
 |   |   |-- lmdb_data_loader.py   <!-- Data loader for LMDB format -->
-|   |-- tests/ <!-- Unit testing folder -->
-|       |-- unit_tests.py         <!-- Unit tests for key functionalities -->
+|   |-- setup.py 
+|   |-- tests.py 
+|   |-- train.py         <!-- Unit tests for key functionalities -->
 </pre>
 <h2>Installation</h2>
 <ol>
