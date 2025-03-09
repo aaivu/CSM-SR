@@ -36,3 +36,5 @@ def contextual_loss(y_true, y_pred, h=0.5):
     cont_loss = -tf.reduce_sum(tf.math.log(cs)) / tf.cast(tf.size(cs), tf.float32) # Normalize loss return cont_loss
     return cont_loss
 
+def content_loss(y_true, y_pred, lambda_pl=0.25,lambda_cl=0.25):
+    return lambda_cl * contextual_loss(y_true, y_pred) + lambda_pl *perceptual_loss(vgg, y_true, y_pred)
