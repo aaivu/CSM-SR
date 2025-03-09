@@ -8,7 +8,7 @@
     
 <div align="center">
     <h2>
-        <a href="https://github.com/aaivu/Structure-informed-super-resolution-/tree/master/Final-Model/SINSR">
+        <a href="https://github.com/aaivu/Structure-informed-super-resolution-/tree/master/CSM-SR">
             <img src="https://img.shields.io/badge/Project-GitHub-coral" alt="Project">
         </a>
         <a href="https://drive.google.com/file/d/1nZgB0Zq6sPeGh3h5duNINIqRsGrdK2JM/view?usp=sharing">
