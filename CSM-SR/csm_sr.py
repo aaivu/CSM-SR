@@ -20,7 +20,7 @@ class ResizeLayer(layers.Layer):
         return tf.image.resize(hr_features_resized, lr_shape, method='bilinear')
 
 # Define Residual Dense Block (RDB) with Mixed Convolution Types
-def residual_dense_block(x, filters, growth_rate=32, layers_in_block=5):
+def residual_dense_block(x, filters, growth_rate=32, layers_in_block=6):
     concat_features = [x]
     for _ in range(layers_in_block):
         x = layers.Conv2D(growth_rate, (3, 3), padding='same')(x)  # Standard convolution
@@ -41,7 +41,7 @@ def residual_dense_block(x, filters, growth_rate=32, layers_in_block=5):
     return x
 
 # Define Residual-in-Residual Dense Block (RRDB)
-def rrdb(x, filters, growth_rate=32, res_block=5):
+def rrdb(x, filters, growth_rate=32, res_block=6):
     res = layers.Conv2D(filters, (3, 3), padding='same')(x)
     for _ in range(res_block):
         x = residual_dense_block(x, filters, growth_rate)
