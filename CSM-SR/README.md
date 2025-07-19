@@ -74,8 +74,8 @@ To address this gap, the proposed approach integrates structural information usi
 <li>Clone the repository:</li>
 <pre>
 <code>
-git clone <repository_url>
-cd super-resolution
+git clone https://github.com/aaivu/CSM-SR.git
+cd CSM-SR
 </code>
 </pre>
 <li>Create a virtual environment:</li>
@@ -225,25 +225,25 @@ Comparison of super-resolution methods
 <ul>
     <li>
         Randika Prabashwara
-        <a href="https://github.com/github_profile_link">
+        <a href="https://github.com/randikapra">Randika Prabashwara</a>
             <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="80" height="20"/>
         </a>
-        <a href="https://linkedin.com/linkedin_profile_link">
+        <a href="https://linkedin.com/in/randika-prabashwara">
             <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/>
         </a>
     </li>
     <li>
         <a href="https://github.com/Gayani2001">Gayani Wickramarathna</a>
-        <a href="https://linkedin.com/linkedin_profile_link">
+        <a href="https://www.linkedin.com/in/gwickramarathna/">
             <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/>
         </a>
     </li>
     <li>
         Oshadi Perera
-        <a href="https://github.com/github_profile_link">
+        <a href="https://github.com/Oshadi20">Oshadi Perera</a>
             <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="80" height="20"/>
         </a>
-        <a href="https://linkedin.com/linkedin_profile_link">
+        <a href="http://www.linkedin.com/in/oshadi-perera">
             <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/>
         </a>
     </li>
@@ -272,7 +272,7 @@ Comparison of super-resolution methods
         <td>Contributor</td>
         <td>Randika Prabashwara</td>
         <td><a href="https://github.com/randikapra"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="80" height="20"/></a></td>
-        <td><a href="https://www.linkedin.com/in/randika-prabashwara-739bba237/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/></a></td>
+        <td><a href="https://www.linkedin.com/in/randika-prabashwara/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" width="80" height="20"/></a></td>
     </tr>
     <tr>
         <td>Contributor</td>
